@@ -1,0 +1,121 @@
+{% block downcat %}
+    <section class="bar background-white no-mb">
+        <div class="container">
+
+            <div class="col-md-12">
+                <div class="heading text-center">
+                    <h2>Kategorie</h2>
+                </div>
+
+                <p class="lead">Nie masz szpeju na wyprawę? Przyjdź do nas, a wyposażymy Cię w każdą potrzebną rzecz w przystępnej cenie. Zapraszamy!
+                </p>
+
+                <!-- *** BLOG HOMEPAGE ***
+_________________________________________________________ -->
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box-image-text blog">
+                            <div class="top">
+                                <div class="image">
+                                    <img src={{ asset('img/climbing.jpg') }} alt="" class="img-responsive">
+                                </div>
+                                <div class="bg"></div>
+                                <div class="text">
+                                    <p class="buttons">
+                                        <a href="{{ url('category_view', {'id': 1}) }}" class="btn btn-template-transparent-primary"><i class="fa fa-binoculars" aria-hidden="true"></i> Przeglądaj</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h4><a href="">Sprzęt wspinaczkowy</a></h4>
+                                <p class="intro">Przydatny na wypad w skałki lub do stawiania pierwszych kroków na ściance.</p>
+                                <p class="read-more"><a href="{{ url('category_view', {'id': 1}) }}" class="btn btn-template-main">Przeglądaj</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.box-image-text -->
+
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box-image-text blog">
+                            <div class="top">
+                                <div class="image">
+                                    <img src={{ asset('img/winter.jpg') }} alt="" class="img-responsive">
+                                </div>
+                                <div class="bg"></div>
+                                <div class="text">
+                                    <p class="buttons">
+                                        <a href="{{ url('category_view', {'id': 2}) }}" class="btn btn-template-transparent-primary"><i class="fa fa-binoculars" aria-hidden="true"></i> Przeglądaj</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h4><a href="">Sprzęt zimowy</a></h4>
+                                <p class="intro">Na każdą trudną wyprawę w góry zimą.</p>
+                                <p class="read-more"><a href="{{ url('category_view', {'id': 2}) }}" class="btn btn-template-main">Przeglądaj</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.box-image-text -->
+
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box-image-text blog">
+                            <div class="top">
+                                <div class="image">
+                                    <img src={{ asset('img/skitour.jpg') }} alt="" class="img-responsive">
+                                </div>
+                                <div class="bg"></div>
+                                <div class="text">
+                                    <p class="buttons">
+                                        <a href="{{ url('category_view', {'id': 3}) }}" class="btn btn-template-transparent-primary"><i class="fa fa-binoculars" aria-hidden="true"></i> Przeglądaj</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h4><a href="">Skitouring</a></h4>
+                                <p class="intro">Na prawdziwe narciarskie przygody.</p>
+                                <p class="read-more"><a href="{{ url('category_view', {'id': 3}) }}" class="btn btn-template-main">Przeglądaj</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.box-image-text -->
+
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box-image-text blog">
+                            <div class="top">
+                                <div class="image">
+                                    <img src={{ asset('img/camping.jpg') }} alt="" class="img-responsive">
+                                </div>
+                                <div class="bg"></div>
+                                <div class="text">
+                                    <p class="buttons">
+                                        <a href="{{ url('category_view', {'id': 4}) }}" class="btn btn-template-transparent-primary"><i class="fa fa-binoculars" aria-hidden="true"></i> Przeglądaj</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h4><a href="">Sprzęt turystyczny</a></h4>
+                                <p class="intro">Dla komfortu snu i jedzenia w podróży.</p>
+                                <p class="read-more"><a href="{{ url('category_view', {'id': 4}) }}" class="btn btn-template-main">Przeglądaj</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.box-image-text -->
+
+                    </div>
+
+
+
+                </div>
+         </div>
+
+        </div>
+
+    </section>
+{% endblock %}

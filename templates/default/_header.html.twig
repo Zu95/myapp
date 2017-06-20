@@ -1,0 +1,41 @@
+{% block header %}
+    <div id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5 contact">
+                    <p class="hidden-sm hidden-xs">Skontaktuj się ze mną! zkrzysz@gmail.com</p>
+                    <p class="hidden-md hidden-lg"><a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                    </p>
+                </div>
+                <div class="col-xs-7">
+                    <div class="social">
+                        <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                    </div>
+
+                    <div class="login">
+                        <a href="../cart"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs text-uppercase">Koszyk</span></a>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href="{{ url('auth_logout') }}" title="{{ 'auth.logout.label'|trans }}">
+                                <i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Wyloguj się</span>
+                            </a>
+                            <a href=""><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Moje konto</span></a>
+                        {% else %}
+                            <a href="{{ url('auth_login') }}" title="{{ 'auth.login.label'|trans }}">
+                                <i class="fa fa-sign-in"></i><span class="hidden-xs text-uppercase">Logowanie</span>
+                            </a>
+                            <a href="customer-register.html"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Rejestracja</span></a>
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

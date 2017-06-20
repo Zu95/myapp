@@ -1,0 +1,52 @@
+<?php
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Controller\ProductController;
+use Controller\CategoryController;
+use Controller\CartController;
+use Controller\AuthController;
+use Controller\AdminController;
+use Utils\Categories;
+
+
+//Request::setTrustedProxies(array('127.0.0.1'));
+
+$app->get('/', function () use ($app) {
+    $categories = new Categories($app['db']);
+
+    return $app['twig']->render('main/index.html.twig', [
+        'climbing' => $categories->findAllByParent(1),
+        'winter' => $categories->findAllByParent(2),
+        'skitouring' => $categories->findAllByParent(3),
+        'camping' => $categories->findAllByParent(4),
+
+    ]);
+})
+->bind('homepage')
+;
+
+$app->mount('/product', new ProductController());
+$app->mount('/category', new CategoryController());
+//$app->mount('/cart', new CartController());
+$app->mount('/auth', new AuthController());
+$app->mount('/admin', new AdminController());
+
+$app->error(function (\Exception $e, Request $request, $code) use ($app) {
+    if ($app['debug']) {
+        return;
+    }
+
+    // 404.html, or 40x.html, or 4xx.html, or error.html
+    $templates = array(
+        'errors/'.$code.'.html.twig',
+        'errors/'.substr($code, 0, 2).'x.html.twig',
+        'errors/'.substr($code, 0, 1).'xx.html.twig',
+        'errors/default.html.twig',
+    );
+
+    return new Response($app['twig']->resolveTemplate($templates)->render(array('code' => $code)), $code);
+});

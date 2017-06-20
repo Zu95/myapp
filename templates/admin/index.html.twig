@@ -1,0 +1,40 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+    {% block breadcrumbs %}
+        <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>Panel Administracyjny</h1>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="breadcrumb">
+                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
+                            <li>Panel administracyjny</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <ul>
+                    <li>
+                        <a href="{{ url('admin_order_index') }}">Wszystkie zamówienia</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('admin_user_index') }}">Zarządzanie użytkownikami</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('category_index') }}">Przeglądaj produkty</a>
+                    </li>
+                </ul>
+          </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+    {% block breadcrumbs %}
+    <div id="heading-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>Edytuj produkt</h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ url('homepage') }}">Panel administracyjny</a></li>
+                        <li>Edytuj produkt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <div id="content">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- *** LEFT COLUMN ***
+        _________________________________________________________ -->
+
+                <div class="col-md-9">
+
+                    <div class="row" id="productMain">
+
+                        {{ form_start(form, { method: 'post', action: url('product_edit', {'id': product.product_id}) }) }}
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">{{  form_row(form.name) }}</div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">{{ form_row(form.FK_category_id) }}</div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">{{ form_row(form.qty) }}</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">{{ form_row(form.price) }}</div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">{{ form_row(form.img) }}</div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <img src="abc" alt="" class="img-responsive">
+                                    </div>
+                                </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group">{{ form_row(form.description) }}</div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="{{ 'zapisz' }}" class="btn btn-template-main" />
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+
+
+                <!-- /.col-md-9 -->
+
+
+                <!-- *** LEFT COLUMN END *** -->
+
+                {% include asset('product/_rightmenu.html.twig') %}
+
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+    <!-- /.container -->
+    </div>
+    <!-- /#content -->
+
+
+
+{% endblock %}

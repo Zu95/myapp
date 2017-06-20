@@ -1,0 +1,85 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+{% if product|length %}
+{% block breadcrumbs %}
+    {% include asset('default/_breadcrumbs.html.twig') with{
+        name : product.name,
+        category : product.category_name,
+        category_id : product.FK_category_id,
+        parent_category : product.parent_name,
+        parent_id : product.parent_id,
+    }
+    %}
+{% endblock %}
+    <div id="content">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- *** LEFT COLUMN ***
+        _________________________________________________________ -->
+
+                <div class="col-md-9">
+
+                    <div class="row" id="productMain">
+                        <div class="col-sm-6">
+                            <div id="mainImage">
+                                <img src="/uploads/photos/{{ product.img }}" alt="{{ product.name }}" class="img-responsive">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="box">
+
+                                {{ form_start(form, { method: 'post', action: url('category_index') }) }}
+                                            <div class="col-xs-4">
+                                            </div>
+
+                                            <div class="col-xs-4">
+                                                {{ form_row(form.qty) }}
+                                            </div>
+
+                                    <p class="price">{{ product.price }} zł</p> {# tutaj by mogło liczyć sumę z wybranej ilości #}
+
+                                    <p class="text-center">
+                                        <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> {{ 'add_to_cart'|trans }}</button>
+                                    </p>
+
+                                {{ form_end(form) }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="box" id="details">
+                        <p>
+                        <h4>{{ 'descript'|trans }}</h4>
+                        <p>{{ product.description }}</p>
+
+                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ url('product_edit', {'id': product.product_id}) }}" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i>Edytuj</a>
+                    <a href="{{ url('product_delete', {'id': product.product_id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i>Usuń</a>
+                    {% endif %}
+
+                </div>
+                <!-- /.col-md-9 -->
+
+
+                <!-- *** LEFT COLUMN END *** -->
+
+                {% include asset('product/_rightmenu.html.twig') %}
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#content -->
+
+{% endif %}
+
+{% endblock %}

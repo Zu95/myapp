@@ -1,0 +1,65 @@
+<!-- *** RIGHT COLUMN ***
+_________________________________________________________ -->
+
+<div class="col-sm-3">
+
+    <!-- *** MENUS AND FILTERS ***
+_________________________________________________________ -->
+    <div class="panel panel-default sidebar-menu">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ 'categories'|trans }}</h3>
+        </div>
+
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked category-menu">
+                 <li>
+                    <a href="">Sprzęt wspinaczkowy <span class="badge pull-right"></span></a>
+                    <ul>
+                        {% for row in climbing %}
+                            <li><a href="{{ url('category_view', {'id': row.category_id}) }}">{{ row.category_name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Sprzęt zimowy<span class="badge pull-right"></span></a>
+                    <ul>
+                        {% for row in winter %}
+                            <li><a href="{{ url('category_view', {'id': row.category_id}) }}">{{ row.category_name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Skitouring <span class="badge pull-right"></span></a>
+                    <ul>
+                        {% for row in skitouring %}
+                            <li><a href="{{ url('category_view', {'id': row.category_id}) }}">{{ row.category_name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Sprzęt turystyczny <span class="badge pull-right"></span></a>
+                    <ul>
+                        {% for row in camping %}
+                            <li><a href="{{ url('category_view', {'id': row.category_id}) }}">{{ row.category_name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- *** MENUS AND FILTERS END *** -->
+
+</div>
+<!-- /.col-md-3 -->
+
+<!-- *** RIGHT COLUMN END *** -->

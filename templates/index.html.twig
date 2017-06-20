@@ -1,0 +1,18 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+{% block header %}{% include 'default/_header.html.twig' %}{% endblock %}
+{% block navbar %}{% include 'default/_navbar.html.twig' with{
+    climbing: climbing,
+    winter: winter,
+    skitouring: skitouring,
+    camping: camping
+    }
+    %}
+{% endblock %}
+    {% block body %}
+        {% block breadcrumbs %}{% endblock %}
+    {% endblock %}
+{% block downcat %}{% include 'default/_downcat.html.twig' %}{% endblock %}
+{% block footer %}{% include 'default/_footer.html.twig' %}{% endblock %}
+{% endblock %}

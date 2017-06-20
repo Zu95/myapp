@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="add_to_cart">
+                <source>add_to_cart</source>
+                <target>Add to cart</target>
+            </trans-unit>
+            <trans-unit id="descript">
+                <source>descript</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="av_sizes">
+                <source>av_sizes</source>
+                <target>Available sizes</target>
+            </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Categories</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

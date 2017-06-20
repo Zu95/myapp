@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="add_to_cart">
+                <source>add_to_cart</source>
+                <target>Dodaj do koszyka</target>
+            </trans-unit>
+            <trans-unit id="descript">
+                <source>descript</source>
+                <target>Opis produktu</target>
+            </trans-unit>
+            <trans-unit id="av_sizes">
+                <source>av_sizes</source>
+                <target>Available sizes</target>
+            </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="main_page">
+                <source>main_page</source>
+                <target>Strona Główna</target>
+            </trans-unit>
+            <trans-unit id="szpejara">
+                <source>szpejara</source>
+                <target>Szpejara</target>
+            </trans-unit>
+            <trans-unit id="text.rental">
+                <source>text.rental</source>
+                <target>Największa wypożyczalnia sprzętu turystycznego i wspinaczkowego</target>
+            </trans-unit>
+            <trans-unit id="text.adventure">
+                <source>text.adventure</source>
+                <target>Wyrusz z nami na przygodę!</target>
+            </trans-unit>
+            <trans-unit id="text.browse_all">
+                <source>text.browse_all</source>
+                <target>Przeglądaj wszystkie kategorie</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

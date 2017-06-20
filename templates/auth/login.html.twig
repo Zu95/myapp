@@ -1,0 +1,94 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+    {% block breadcrumbs %}
+        <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>Zaloguj się</h1>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="breadcrumb">
+                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
+                            <li>Logowanie</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <div id="content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box">
+                        <h2 class="text-uppercase">Logowanie</h2>
+
+                        <p class="lead">Masz już konto?</p>
+                        <p class="text-muted">Zaloguj się</p>
+
+                        <hr>
+
+                        {{ form_start(loginForm, { method: 'post', action: path('auth_login_check') }) }}
+                        <div class="form-group">
+                            {{  form_row(loginForm.username) }}
+                        </div>
+                        <div class="form-group">
+                            {{  form_row(loginForm.password) }}
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" value="{{ 'action.login'|trans }}" class="btn btn-template-main" />
+                        </div>
+                        {{ form_end(loginForm) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="box">
+                        <h2 class="text-uppercase">Nowe konto</h2>
+
+                        <p class="lead">Nie masz jeszcze u nas konta?</p>
+                        <p>Zarejestruj sie, to potrwa chwile</p>
+
+                        <hr>
+
+                        {{ form_start(registerForm, { method: 'post', action: path('auth_register') }) }}
+                        <div class="form-group">
+                            {{  form_row(registerForm.username) }}
+                        </div>
+                        <div class="form-group">
+                            {{  form_row(registerForm.password) }}
+                        </div>
+                        <div class="form-group">
+                            {{  form_row(registerForm.firstname) }}
+                        </div>
+                        <div class="form-group">
+                            {{  form_row(registerForm.surname) }}
+                        </div>
+                        <div class="form-group">
+                            {{  form_row(registerForm.email) }}
+                        </div>
+                        <div class="form-group">
+                            {{  form_row(registerForm.telephone) }}
+                        </div>
+                        <div class="form-group">
+                            {{  form_row(registerForm.adress) }}
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" value="{{ 'action.login'|trans }}" class="btn btn-template-main" />
+                        </div>
+                        {{ form_end(registerForm) }}
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+        {% block breadcrumbs %}
+                {% include asset('default/_breadcrumbs.html.twig') with{
+                name: 'null',
+                category: category_data.category_name,
+                category_id: current_category,
+                parent_category: category_data.parent_name,
+                parent_id: category_data.parent_id
+                }
+                %}
+        {% endblock %}
+
+    <div id="content">
+        <div class="container">
+            <p class="text-muted lead text-center">Opis działu.</p>
+
+            <div class="row products">
+                {% for row in paginator.data %}
+                    <div class="col-md-3 col-sm-4">
+                        <div class="product">
+                            <div class="image">
+                                <a href="{{ url('product_view', {'id': row.product_id}) }}">
+                                    <img src="/uploads/photos/{{ row.img }}" alt="{{ row.name }}" class="img-responsive image1">
+                                </a>
+                            </div>
+
+                            <div class="text">
+                                <h3><a href="{{ url('product_view', {'id': row.product_id}) }}">{{ row.name }}</a></h3>
+                                <p class="price">{{ row.price }}</p>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <p class="text">
+                                    <a href="{{ url('product_edit', {'id': row.product_id}) }}" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i>Edytuj</a>
+                                    <a href="{{ url('product_delete', {'id': row.product_id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i>Usuń</a>
+                                </p>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-12">
+
+
+            {% include asset('default/_paginationcategory.html.twig') with {
+            paginator: paginator,
+            route_name: 'category_view_paginated',
+            current_category: current_category
+            } %}
+
+        </div>
+    </div>
+{% endblock %}
