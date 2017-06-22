@@ -10,6 +10,7 @@ use Controller\CategoryController;
 use Controller\CartController;
 use Controller\AuthController;
 use Controller\AdminController;
+use Controller\CustomerController;
 use Utils\Categories;
 
 
@@ -34,6 +35,7 @@ $app->mount('/category', new CategoryController());
 //$app->mount('/cart', new CartController());
 $app->mount('/auth', new AuthController());
 $app->mount('/admin', new AdminController());
+$app->mount('/customer', new CustomerController());
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

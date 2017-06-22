@@ -18,13 +18,13 @@
             </div>
         </div>
     {% endblock %}
-<div class="content">
-    <div class="containter">
+<div id="content">
+    <div class="container">
         <div class="row">
             <div class="col-md-9" id="customer-orders">
             <div class="box">
                 <div class="table-responsive">
-                    <table class="table-hover">
+                    <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -47,15 +47,17 @@
                                 <td>{{ row.from }}</td>
                                 <td>{{ row.to }}</td>
                                 <td>{{ row.order_price }}</td>
-                                <td><a href="customer-order.html" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                <td><a href="{{ url('admin_orders_edit', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
-            </div>
+
             </div>
 
+            </div>
+            {% include asset('admin/_rightmenu.html.twig') %}
         </div>
     </div>
 </div>

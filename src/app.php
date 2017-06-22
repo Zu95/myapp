@@ -95,6 +95,7 @@ $app->register(
             ['^/edit.+$', 'ROLE_ADMIN'],
             ['^/delete.+$', 'ROLE_ADMIN'],
             ['^/account.+$', 'ROLE_ADMIN'],
+            ['^/customer.+$', 'ROLE_USER'],
         ],
         'security.role_hierarchy' => [
             'ROLE_ADMIN' => ['ROLE_USER'],

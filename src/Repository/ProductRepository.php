@@ -63,16 +63,24 @@ class ProductRepository
             $oldData = $this->findOneById($id);
             $oldQty = $oldData['qty'];
             $qty_available = $product['qty_available'] - $oldQty + $product['qty'];
-            unset($product['qty_available']);
-            unset($product['category_name']);
-            unset($product['parent_id']);
-            unset($product['parent_name']);
+
+            if($product['img'] == null){
+                $product['img'] = $oldData['img'];
+            }
+
 
             $product_data = [
+                'name' => $product['name'],
+                'description' => $product['description'],
+                'img' => $product['img'],
+                'price' => $product['price'],
+                'qty' => $product['qty'],
+                'qty_available' => $qty_available,
+                'FK_category_id' => $product['FK_category_id']
 
             ];
 
-            return $this->db->update('products', $product, ['product_id' => $id, 'qty_available' => $qty_available]);
+            return $this->db->update('products', $product_data, ['product_id' => $id]);
         }
         else {
             // add new record

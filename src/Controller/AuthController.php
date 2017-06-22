@@ -51,6 +51,7 @@ class AuthController implements ControllerProviderInterface
     {
         $categories = new Categories($app['db']);
         $user = ['username' => $app['session']->get('_security.last_username')];
+
         $loginForm = $app['form.factory']->createBuilder(LoginType::class, $user)->getForm();
         $registerForm = $app['form.factory']->createBuilder(RegisterType::class, $user)->getForm();
 

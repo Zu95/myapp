@@ -1,0 +1,91 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+    {% block breadcrumbs %}
+        <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>Zamówienie #{{ order.borrowed_id }}</h1>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="breadcrumb">
+                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
+                            <li><a href="{{ url('admin_index') }}">Panel administracyjny</a></li>
+                            <li>Zamówienia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9" id="customer-orders">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            Klient: <a href="{{ url('admin_user_edit', {'id': order.FK_user_id}) }}"> {{ order.firstname }} {{ order.surname }}</a>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            Data zamówienia: {{ order.date }}
+                        </div>
+                    </div>
+
+                    {{ form_start(form, { method: 'post', action: url('admin_order_view', {'id': order.borrowed_id}) }) }}
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">{{  form_row(form.status) }}</div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">{{ form_row(form.order_price) }}</div>
+                        </div>
+                    </div>
+                    {#<div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">{{ form_row(form.from) }}</div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group">{{ form_row(form.to) }}</div>
+                        </div>
+                    </div>#}
+                    <div class="row">
+                        <input type="submit" value="{{ 'zapisz' }}" class="btn btn-template-main" />
+                    </div><br>
+                    {{ form_end(form) }}
+                    <div class="box">
+
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Zdjęcie</th>
+                                    <th>Produkt</th>
+                                    <th>Wartość</th>
+                                    <th>Akcja</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in order_data %}
+                                    <tr>
+                                        <th>#{{ row.FK_product_id }}</th>
+                                        <td><img src="/uploads/photos/{{ row.img }}" alt="{{ row.name }}" class="img-responsive"></td>
+                                        <td>{{ row.name }}</td>
+                                        <td>{{ row.product_price }}</td>
+                                        <td><a href="{{ url('product_view', {'id': row.FK_product_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                {% include asset('admin/_rightmenu.html.twig') %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

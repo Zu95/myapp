@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1>Edytuj produkt</h1>
+                    <h1>{{ product.name }}</h1>
                 </div>
                 <div class="col-md-5">
                     <ul class="breadcrumb">
@@ -49,7 +49,7 @@
                                         <div class="form-group">{{ form_row(form.img) }}</div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <img src="abc" alt="" class="img-responsive">
+                                        <img src="/uploads/photos/{{ product_img }}" alt="" class="img-responsive">
                                     </div>
                                 </div>
 

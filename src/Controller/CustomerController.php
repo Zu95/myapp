@@ -1,20 +1,18 @@
 <?php
 /**
- * Admin controller.
+ * Customer controller.
  *
  * @copyright (c) 2017 Zuzanna Krzysztofik
  */
 namespace Controller;
-use Form\EditOrderType;
 use Symfony\Component\HttpFoundation\Request;
 use Repository\OrderRepository;
-use Repository\UserRepository;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Utils\Categories;
 
 
-class AdminController implements ControllerProviderInterface
+class CustomerController implements ControllerProviderInterface
 {
     /**
      * Routing settings.
@@ -27,17 +25,15 @@ class AdminController implements ControllerProviderInterface
     {
         $controller = $app['controllers_factory'];
         $controller->get('/', [$this, 'indexAction'])
-            ->bind('admin_index');
-        $controller->get('/users', [$this, 'userAction'])
-            ->bind('admin_user_index');
-        $controller->get('/users/{id}', [$this, 'editUserAction']) //przeglądanie kategorii, pierwsza strona
-            ->bind('admin_user_edit');
+            ->bind('customer_index');
+        $controller->get('/user', [$this, 'userAction'])
+            ->bind('customer_user_index');
         $controller->get('/order', [$this, 'orderAction'])
-            ->bind('admin_order_index');
+            ->bind('customer_order_index');
         $controller->get('/order/{id}', [$this, 'orderViewAction'])
             ->method('GET|POST')
             ->assert('id', '[1-9]\d*')
-            ->bind('admin_order_view');
+            ->bind('customer_order_view');
 
         return $controller;
     }
@@ -53,7 +49,7 @@ class AdminController implements ControllerProviderInterface
         $categories = new Categories($app['db']);
 
         return $app['twig']->render(
-            'admin/index.html.twig',
+            'customer/index.html.twig',
             [
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),
@@ -67,11 +63,14 @@ class AdminController implements ControllerProviderInterface
     {
         $orderRepository = new OrderRepository($app['db']);
         $categories = new Categories($app['db']);
-
+        $token = $app['security.token_storage']->getToken();
+        if (null !== $token) {
+            $username = $token->getUser()->getUsername();
+        }
 
         return $app['twig']->render(
-            'admin/order.html.twig',
-            [   'orders' => $orderRepository->findAll(),
+            'customer/order.html.twig',
+            [   'orders' => $orderRepository->findAllByUsername($username),
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),
                 'skitouring' => $categories->findAllByParent(3),
@@ -80,11 +79,18 @@ class AdminController implements ControllerProviderInterface
         );
     }
 
-    public function orderViewAction(Application $app, $id, Request $request) //edycja jednego zamówienia
+    public function orderViewAction(Application $app, $id) //podgląd jednego zamówienia
     {
         $orderRepository = new OrderRepository($app['db']);
         $categories = new Categories($app['db']);
-        $order = $orderRepository->findOneById($id);
+        $token = $app['security.token_storage']->getToken();
+        if (null !== $token) {
+            $username = $token->getUser()->getUsername();
+        }
+        //else wyrzuć błąd!
+
+        $order = $orderRepository->findOneByUserById($id, $username);
+
         if (!$order) {
             $app['session']->getFlashBag()->add(
                 'messages',
@@ -94,53 +100,14 @@ class AdminController implements ControllerProviderInterface
                 ]
             );
 
-            return $app->redirect($app['url_generator']->generate('admin_order_index'));
+            return $app->redirect($app['url_generator']->generate('customer_order_index'));
         }
-
-        $form = $app['form.factory']->createBuilder(
-            EditOrderType::class,
-            $order)->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $order  = $form->getData();
-            $orderRepository = new OrderRepository($app['db']);
-            $orderRepository->save($order);
-
-            $app['session']->getFlashBag()->add(
-                'messages',
-                [
-                    'type' => 'success',
-                    'message' => 'message.element_successfully_edited',
-                ]
-            );
-
-            return $app->redirect($app['url_generator']->generate('admin_order_index'), 301);
-        }
-
-        return $app['twig']->render(
-            'admin/orderView.html.twig',
-            [   'order_data' => $orderRepository->findDataById($id),
-                'order' => $orderRepository->findOneById($id),
-                'form' => $form->createView(),
-                'climbing' => $categories->findAllByParent(1),
-                'winter' => $categories->findAllByParent(2),
-                'skitouring' => $categories->findAllByParent(3),
-                'camping' => $categories->findAllByParent(4)
-            ]
-        );
-    }
-
-    public function userAction(Application $app) //funkcja renderuje widok wszystkich userów
-    {
-        $userRepository = new UserRepository($app['db']);
-        $categories = new Categories($app['db']);
 
 
         return $app['twig']->render(
-            'admin/user.html.twig',
-            [   'users' => $userRepository->findAll(),
+            'customer/orderView.html.twig',
+            [   'order_data' => $orderRepository->findDataByUserById($id, $username),
+                'order' => $order,
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),
                 'skitouring' => $categories->findAllByParent(3),

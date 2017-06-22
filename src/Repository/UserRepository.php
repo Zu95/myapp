@@ -131,6 +131,11 @@ class UserRepository
         }
     }
 
+    /**
+     * Add new user
+     * @param Application $app
+     * @param $user
+     */
     public function add(Application $app, $user)
     {
         if (isset($user['username']) && ctype_digit((string) $user['username'])) {
@@ -185,6 +190,43 @@ class UserRepository
         }
 
         return $queryBuilder->execute()->fetchAll();
+    }
+
+    /**
+     * Finds all users and their data
+     * @return array
+     */
+    public function findAll(){
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('u.user_id', 'u.username', 'r.role_id', 'r.role_name',
+            'ud.firstname', 'ud.surname', 'ud.telephone', 'ud.email', 'ud.adress', 'ud.information')
+            ->from('users', 'u')
+            ->innerJoin('u', 'roles', 'r', 'r.role_id = u.FK_role_id')
+            ->innerJoin('u', 'users_data', 'ud', 'ud.FK_user_id = u.user_id');
+
+        $result = $queryBuilder->execute()->fetchAll();
+        return !$result ? [] : $result;
+
+    }
+
+    /**
+     * Finds one user by id
+     * @param $id
+     * @return mixed
+     */
+    public function findOneById($id){
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('u.user_id', 'u.username', 'r.role_id', 'r.role_name',
+            'ud.firstname', 'ud.surname', 'ud.telephone', 'ud.email', 'ud.adress', 'ud.information')
+            ->from('users', 'u')
+            ->innerJoin('u', 'roles', 'r', 'r.role_id = u.FK_role_id')
+            ->innerJoin('u', 'users_data', 'ud', 'ud.FK_user_id = u.user_id')
+            ->where('u.user_id = :id')
+            ->setParameter(':id', $id);
+
+        $result = $queryBuilder->execute()->fetch();
+        return !$result ? [] : $result;
+
     }
 
 }

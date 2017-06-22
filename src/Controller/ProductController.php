@@ -146,6 +146,8 @@ class ProductController implements ControllerProviderInterface
         $productRepository = new ProductRepository($app['db']);
         $categories = new Categories($app['db']);
         $product = $productRepository->findOneById($id);
+        $img = $product['img'];
+        unset($product['img']);
 
         if (!$product) {
             $app['session']->getFlashBag()->add(
@@ -167,7 +169,12 @@ class ProductController implements ControllerProviderInterface
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $productRepository->save($form->getData());
+            $product  = $form->getData();
+            $fileUploader = new FileUploader($app['config.photos_directory']);
+            $fileName = $fileUploader->upload($product['img']);
+            $product['img'] = $fileName;
+            $productRepository = new ProductRepository($app['db']);
+            $productRepository->save($product);
 
             $app['session']->getFlashBag()->add(
                 'messages',
@@ -185,6 +192,7 @@ class ProductController implements ControllerProviderInterface
             [
                 'product' => $product,
                 'form' => $form->createView(),
+                'product_img' => $img,
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),
                 'skitouring' => $categories->findAllByParent(3),

@@ -32,13 +32,13 @@ class OrderRepository
     }
 
     /**
-     * Find one record.
+     * Finds order data by order id
      *
      * @param string $id Element id
      *
      * @return array|mixed Result
      */
-    public function findOneById($id)
+    public function findDataById($id)
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder->select('bd.FK_borrowed_id', 'bd.FK_product_id', 'bd.product_price', 'bd.qty', 'p.name', 'p.img')
@@ -51,30 +51,123 @@ class OrderRepository
 
     }
 
-    public function findAll()
+    /**
+     * Finds order data by username and order id
+     * @param $id
+     * @param $username
+     * @return array
+     */
+    public function findDataByUserById($id, $username)
     {
         $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
-            ->from('borrowed', 'b')
-            ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id');
+        $queryBuilder->select('bd.FK_borrowed_id', 'bd.FK_product_id', 'bd.product_price', 'bd.qty', 'p.name', 'p.img')
+            ->from('borrowed_data', 'bd')
+            ->innerJoin('bd', 'products', 'p', 'p.product_id = bd.FK_product_id')
+            ->innerJoin('bd', 'borrowed', 'b', 'b.borrowed_id = bd.FK_borrowed_id')
+            ->innerJoin('b', 'users', 'u', 'u.user_id = b.FK_user_id')
+            ->where('bd.FK_borrowed_id = :id')
+            ->andWhere('u.username = :username')
+            ->setParameters(array(':username' => $username, ':id' => $id));
         $result = $queryBuilder->execute()->fetchAll();
         return !$result ? [] : $result;
 
     }
 
-    public function save($Order)
+    /**
+     * Finds one order by order id
+     * @param $id
+     * @return array|mixed
+     */
+    public function findOneById($id)
     {
-        if (isset($Order['borrowed_id']) && ctype_digit((string) $Order['borrowed_id'])) {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
+            ->from('borrowed', 'b')
+            ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id')
+            ->where('b.borrowed_id = :id')
+            ->setParameter(':id', $id);
+        $result = $queryBuilder->execute()->fetch();
+        return !$result ? [] : $result;
+
+    }
+
+    /**
+     * Finds one order by id and username
+     * @param $id
+     * @param $username
+     * @return array|mixed
+     */
+    public function findOneByUserById($id, $username)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
+            ->from('borrowed', 'b')
+            ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id')
+            ->innerJoin('ud', 'users', 'u', 'u.user_id = ud.FK_user_id')
+            ->where('b.borrowed_id = :id')
+            ->andWhere('u.username = :username')
+            ->setParameters(array(':username' => $username, ':id' => $id));
+        $result = $queryBuilder->execute()->fetch();
+        return !$result ? [] : $result;
+    }
+
+    /**
+     * Finds all orders, ordered by status
+     * @return array
+     */
+    public function findAll()
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
+            ->from('borrowed', 'b')
+            ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id')
+            ->orderBy('b.status', 'ASC');
+        $result = $queryBuilder->execute()->fetchAll();
+        return !$result ? [] : $result;
+
+    }
+
+    /**
+     * Finds all orders by username
+     * @param $username
+     * @return array
+     */
+    public function findAllByUsername($username)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
+            ->from('borrowed', 'b')
+            ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id')
+            ->innerJoin('ud', 'users', 'u', 'u.user_id = ud.FK_user_id')
+            ->where('u.username = :username')
+            ->setParameter(':username', $username);
+        $result = $queryBuilder->execute()->fetchAll();
+        return !$result ? [] : $result;
+
+    }
+
+    /**
+     * Save or edit order
+     * @param $order
+     * @return int
+     */
+    public function save($order)
+    {
+        if (isset($order['borrowed_id']) && ctype_digit((string) $order['borrowed_id'])) {
             // update record
-            $id = $Order['borrowed_id'];
-            unset($Order['borrowed_id']);
+            $id = $order['borrowed_id'];
+            unset($order['borrowed_id']);
+            unset($order['firstname']);
+            unset($order['surname']);
+            unset($order['FK_user_id']);
+            unset($order['date']);
 
 
-            return $this->db->update('borrowed', $Order, ['borrowed_id' => $id]);
+            return $this->db->update('borrowed', $order, ['borrowed_id' => $id]);
         }
         else {
             // add new record
-            return $this->db->insert('borrowed', $Order);
+            return $this->db->insert('borrowed', $order);
         }
     }
     /**
