@@ -48,7 +48,7 @@ class CategoryController implements ControllerProviderInterface
     {
         $categoryRepository = new CategoryRepository($app['db']);
         $categories = new Categories($app['db']);
-
+        dump($app['session']->get('cart'));
         return $app['twig']->render(
             'category/index.html.twig',
             ['paginator' => $categoryRepository->findAllPaginated($page),

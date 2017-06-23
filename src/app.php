@@ -111,7 +111,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
-$app['session']->set('cart', []);
+/*$app['session']->set('cart', []);*/
 
 
 return $app;

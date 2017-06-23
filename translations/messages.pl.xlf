@@ -160,6 +160,10 @@
                 <source>action.change_password</source>
                 <target>Zmień hasło</target>
             </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Usuń</target>
+            </trans-unit>
 
         </body>
     </file>

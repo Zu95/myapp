@@ -12,7 +12,7 @@ use Silex\Application;
 /**
  * Class CartProvider.
  *
- * @package Repository
+ * @package Provider
  */
 class CartProvider
 {
@@ -24,7 +24,7 @@ class CartProvider
     protected $db;
 
     /**
-     * TagRepository constructor.
+     * CartProvider constructor.
      *
      * @param \Doctrine\DBAL\Connection $db
      */
@@ -49,16 +49,13 @@ class CartProvider
 
     public function addToCart(Application $app, $id, $qty)
     {
-        $cart = $app['session']->get('cart');
 
-        dump($cart);
+        $cart = $app['session']->get('cart');
 
         array_push($cart, ['product_id' => $id, 'qty' => $qty]);
 
-        dump($cart);
-
         return $app['session']->set('cart', $cart);
-
+        dump($app['session']->get('cart'));
 
     }
 

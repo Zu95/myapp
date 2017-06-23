@@ -48,12 +48,14 @@ class CartRepository
 
         foreach($cart as $product){
             $id = $product['product_id'];
+            $qty = $product['qty'];
             $productData = $productRepository->findOneById($id);
             array_push($cartData, [
                     'product_id' => $id,
                     'name' => $productData['name'],
                     'img' => $productData['img'],
                     'price' => $productData['price'],
+                    'qty' => $qty
                 ]
             );
         }
@@ -63,7 +65,7 @@ class CartRepository
 
     /**
      * @param Application $app
-     * @param $borrow_data from BorrowFormType
+     * @param $borrow_data from BorrowType
      * @param $cart
      */
     public function borrow(Application $app, $borrow_data, $cart)
