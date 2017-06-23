@@ -77,7 +77,10 @@ class CartProvider
     {
         $cart = $app['session']->get('cart');
 
-        return array_push($cart, ['product_id' => $id, 'qty' => $qty]);
+        array_push($cart, ['product_id' => $id, 'qty' => $qty]);
+
+        return $app['session']->set('cart', $cart);
+
 
     }
 
