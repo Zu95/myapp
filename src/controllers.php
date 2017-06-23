@@ -32,7 +32,7 @@ $app->get('/', function () use ($app) {
 
 $app->mount('/product', new ProductController());
 $app->mount('/category', new CategoryController());
-//$app->mount('/cart', new CartController());
+$app->mount('/cart', new CartController());
 $app->mount('/auth', new AuthController());
 $app->mount('/admin', new AdminController());
 $app->mount('/customer', new CustomerController());

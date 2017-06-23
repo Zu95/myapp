@@ -111,5 +111,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
+$app['session']->set('cart', array());
+
 
 return $app;

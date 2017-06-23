@@ -47,7 +47,7 @@
                                 <td>{{ row.from }}</td>
                                 <td>{{ row.to }}</td>
                                 <td>{{ row.order_price }}</td>
-                                <td><a href="{{ url('admin_orders_edit', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                <td><a href="{{ url('admin_order_view', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

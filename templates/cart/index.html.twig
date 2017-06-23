@@ -2,6 +2,23 @@
 {% block title %}Koszyk
     {% endblock %}
 {% block body %}
+    {% block breadcrumbs %}
+        <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>Koszyk</h1>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="breadcrumb">
+                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
+                            <li>Koszyk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
     <div id="content">
         <div class="container">
 
@@ -31,16 +48,16 @@
                                 <tr>
                                     <td>
                                         <a href="#">
-                                            <img src="{{ row.img }}" alt="{{ row.name }}">
+                                            <img src="uploads/photos/{{ row.img }}" alt="{{ row.name }}">
                                         </a>
                                     </td>
                                     <td><a href="#">{{ row.name }}</a>
                                     </td>
                                     <td>
-                                        <input type="number" value="{{ row.amount }}" class="form-control">
+                                       {{ row.qty }}
                                     </td>
                                     <td>{{ row.price }} zł</td>
-                                    <td>cena*ilość??</td>
+                                    <td>{{ row.qty * row.price }}</td>
                                     <td><a href="#"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>

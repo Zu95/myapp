@@ -5,12 +5,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Panel Administracyjny</h1>
+                        <h1>Panel klienta</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
                             <li><a href="{{ url('homepage') }}">Strona główna</a></li>
-                            <li>Panel administracyjny</li>
+                            <li>Panel klienta</li>
                         </ul>
                     </div>
                 </div>
@@ -22,21 +22,24 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="box">
-                        <ul>
-                            <li>
-                                <a href="{{ url('admin_order_index') }}">Wszystkie zamówienia</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('admin_user_index') }}">Zarządzanie użytkownikami</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('category_index') }}">Przeglądaj produkty</a>
-                            </li>
-                        </ul>
+                <ul>
+                    <li>
+                        <a href="{{ url('customer_order_index') }}">Wszystkie zamówienia</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('customer_account_index') }}">Moje dane</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('customer_password_index') }}">Zmiana hasła</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('category_index') }}">Przeglądaj produkty</a>
+                    </li>
+                </ul>
                     </div>
                 </div>
-                {% include asset('admin/_rightmenu.html.twig') %}
-          </div>
+                {% include asset('customer/_rightmenu.html.twig') %}
+            </div>
         </div>
     </div>
 

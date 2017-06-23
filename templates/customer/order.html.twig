@@ -1,0 +1,63 @@
+{% extends 'index.html.twig' %}
+{% block body %}
+    {% block breadcrumbs %}
+        <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1>Moje zamówienia</h1>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="breadcrumb">
+                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
+                            <li><a href="{{ url('customer_index') }}">Panel klienta</a></li>
+                            <li>Moje Zamówienia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9" id="customer-orders">
+                    <div class="box">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Status</th>
+                                    <th>Data</th>
+                                    <th>Od</th>
+                                    <th>Do</th>
+                                    <th>Wartość</th>
+                                    <th>Przeglądaj</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in orders %}
+                                    <tr>
+                                        <th>#{{ row.borrowed_id }}</th>
+                                        <td>Status</td>
+                                        <td>{{ row.date }}</td>
+                                        <td>{{ row.from }}</td>
+                                        <td>{{ row.to }}</td>
+                                        <td>{{ row.order_price }}</td>
+                                        <td><a href="{{ url('customer_order_index', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                {% include asset('customer/_rightmenu.html.twig') %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

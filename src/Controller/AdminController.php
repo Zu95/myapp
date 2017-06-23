@@ -6,6 +6,7 @@
  */
 namespace Controller;
 use Form\EditOrderType;
+use Form\EditUserType;
 use Symfony\Component\HttpFoundation\Request;
 use Repository\OrderRepository;
 use Repository\UserRepository;
@@ -30,7 +31,9 @@ class AdminController implements ControllerProviderInterface
             ->bind('admin_index');
         $controller->get('/users', [$this, 'userAction'])
             ->bind('admin_user_index');
-        $controller->get('/users/{id}', [$this, 'editUserAction']) //przeglądanie kategorii, pierwsza strona
+        $controller->get('/users/{id}', [$this, 'userViewAction']) //przeglądanie kategorii, pierwsza strona
+            ->method('GET|POST')
+            ->assert('id', '[1-9]\d*')
             ->bind('admin_user_edit');
         $controller->get('/order', [$this, 'orderAction'])
             ->bind('admin_order_index');
@@ -63,6 +66,10 @@ class AdminController implements ControllerProviderInterface
         );
     }
 
+    /**
+     * @param Application $app
+     * @return mixed
+     */
     public function orderAction(Application $app) //funkcja renderuje widok wszystkich zamowień
     {
         $orderRepository = new OrderRepository($app['db']);
@@ -80,6 +87,12 @@ class AdminController implements ControllerProviderInterface
         );
     }
 
+    /**
+     * @param Application $app
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function orderViewAction(Application $app, $id, Request $request) //edycja jednego zamówienia
     {
         $orderRepository = new OrderRepository($app['db']);
@@ -132,6 +145,10 @@ class AdminController implements ControllerProviderInterface
         );
     }
 
+    /**
+     * @param Application $app
+     * @return mixed
+     */
     public function userAction(Application $app) //funkcja renderuje widok wszystkich userów
     {
         $userRepository = new UserRepository($app['db']);
@@ -141,6 +158,63 @@ class AdminController implements ControllerProviderInterface
         return $app['twig']->render(
             'admin/user.html.twig',
             [   'users' => $userRepository->findAll(),
+                'climbing' => $categories->findAllByParent(1),
+                'winter' => $categories->findAllByParent(2),
+                'skitouring' => $categories->findAllByParent(3),
+                'camping' => $categories->findAllByParent(4)
+            ]
+        );
+    }
+
+    /**
+     * @param Application $app
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function userViewAction(Application $app, $id, Request $request) //funkcja renderuje widok jednego usera
+    {
+        $userRepository = new UserRepository($app['db']);
+        $categories = new Categories($app['db']);
+        $user = $userRepository->findOneById($id);
+        if (!$user) {
+            $app['session']->getFlashBag()->add(
+                'messages',
+                [
+                    'type' => 'warning',
+                    'message' => 'message.record_not_found',
+                ]
+            );
+
+            return $app->redirect($app['url_generator']->generate('admin_user_index'));
+        }
+
+        $form = $app['form.factory']->createBuilder(
+            EditUserType::class,
+            $user)->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user  = $form->getData();
+            $userRepository = new UserRepository($app['db']);
+            $userRepository->save($user);
+
+            $app['session']->getFlashBag()->add(
+                'messages',
+                [
+                    'type' => 'success',
+                    'message' => 'message.element_successfully_edited',
+                ]
+            );
+
+            return $app->redirect($app['url_generator']->generate('admin_user_index'), 301);
+        }
+
+        return $app['twig']->render(
+            'admin/userView.html.twig',
+            [   'user' => $userRepository->findOneById($id),
+                'form' => $form->createView(),
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),
                 'skitouring' => $categories->findAllByParent(3),

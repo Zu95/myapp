@@ -229,4 +229,42 @@ class UserRepository
 
     }
 
+    public function save($user)
+    {
+
+            $id = $user['user_id'];
+            unset($user['user_id']);
+
+            $user_base = [
+                'FK_role_id' => $user['FK_role_id']
+            ];
+
+            $this->db->beginTransaction();
+            $this->db->update('users', $user_base, ['user_id' => $id]);
+
+            $user_data = [
+                'firstname' => $user['firstname'],
+                'surname' => $user['surname'],
+                'email' => $user['email'],
+                'telephone' => $user['telephone'],
+                'adress' => $user['adress'],
+            ];
+            $this->db->update('users_data', $user_data, ['FK_user_id' => $id]);
+
+        return $this->db->commit();
+    }
+
+    public function changePassword(Application $app, $user)
+    {
+            $user['password'] = $app['security.encoder.bcrypt']->encodePassword($user['password'], '');
+            $user_password = [
+                'password' => $user['password'],
+                ];
+            $id = $user['user_id'];
+
+
+            return $this->db->update('users', $user_password, ['user_id' => $id]);
+
+
+    }
 }
