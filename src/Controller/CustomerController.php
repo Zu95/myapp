@@ -93,7 +93,17 @@ class CustomerController implements ControllerProviderInterface
         if (null !== $token) {
             $username = $token->getUser()->getUsername();
         }
-        //else wyrzuć błąd!
+        else {
+            $app['session']->getFlashBag()->add(
+                'messages',
+                [
+                    'type' => 'warning',
+                    'message' => 'message.record_not_found',
+                ]
+            );
+
+            return $app->redirect($app['url_generator']->generate('admin_order_index'));
+        }
 
         $order = $orderRepository->findOneByUserById($id, $username);
 

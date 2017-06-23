@@ -7,6 +7,7 @@
 namespace Controller;
 use Form\EditOrderType;
 use Form\EditUserType;
+use Form\ChangePasswordType;
 use Symfony\Component\HttpFoundation\Request;
 use Repository\OrderRepository;
 use Repository\UserRepository;
@@ -35,6 +36,9 @@ class AdminController implements ControllerProviderInterface
             ->method('GET|POST')
             ->assert('id', '[1-9]\d*')
             ->bind('admin_user_edit');
+        $controller->get('/users/password/{id}', [$this, 'passwordAction'])
+            ->method('GET|POST')
+            ->bind('admin_password_change');
         $controller->get('/order', [$this, 'orderAction'])
             ->bind('admin_order_index');
         $controller->get('/order/{id}', [$this, 'orderViewAction'])
@@ -215,6 +219,44 @@ class AdminController implements ControllerProviderInterface
             'admin/userView.html.twig',
             [   'user' => $userRepository->findOneById($id),
                 'form' => $form->createView(),
+                'climbing' => $categories->findAllByParent(1),
+                'winter' => $categories->findAllByParent(2),
+                'skitouring' => $categories->findAllByParent(3),
+                'camping' => $categories->findAllByParent(4)
+            ]
+        );
+    }
+
+    public function passwordAction(Application $app, $id, Request $request) //funkcja renderuje widok wszystkich zamowień
+    {
+        $userRepository = new UserRepository($app['db']);
+        $categories = new Categories($app['db']);
+
+        $user = $userRepository->findOneById($id);
+
+        $form = $app['form.factory']->createBuilder(
+            ChangePasswordType::class,
+            $user)->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user  = $form->getData();
+            $userRepository = new UserRepository($app['db']);
+            $userRepository->changePassword($app, $user);
+            $app['session']->getFlashBag()->add(
+                'messages',
+                [
+                    'type' => 'success',
+                    'message' => 'message.password_successfully_changed',
+                ]
+            );
+            return $app->redirect($app['url_generator']->generate('admin_user_index'), 301);
+        }
+
+        return $app['twig']->render(
+            'admin/changePassword.html.twig',
+            [   'user' => $userRepository->findOneById($id),
+                'form' => $form->CreateView(),
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),
                 'skitouring' => $categories->findAllByParent(3),

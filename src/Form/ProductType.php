@@ -31,7 +31,7 @@ class ProductType extends AbstractType
             'name',
             TextType::class,
             [
-                'label' => 'Nazwa produktu',
+                'label' => 'label.name',
                 'required' => true,
                 'attr' => [
                     'max_length' => 45,
@@ -55,7 +55,7 @@ class ProductType extends AbstractType
             'description',
             TextareaType::class,
             [
-                'label' => 'Opis',
+                'label' => 'label.detail',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
@@ -76,7 +76,7 @@ class ProductType extends AbstractType
             'price',
             NumberType::class,
             [
-                'label' => 'Cena w PLN ',
+                'label' => 'label.price',
                 'required' => true,
                 'attr' => array('class' => 'form-control'),
                 'constraints' => [
@@ -97,7 +97,7 @@ class ProductType extends AbstractType
             'img',
             FileType::class,
             [
-                'label' => 'Zdjcie',
+                'label' => 'label.img',
                 'required' => false,
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -120,7 +120,7 @@ class ProductType extends AbstractType
             'qty',
             NumberType::class,
             [
-                'label' => 'Ilość posiadana ',
+                'label' => 'label.qty',
                 'required' => true,
                 'attr' => array('class' => 'form-control'),
                 'constraints' => [
@@ -135,7 +135,7 @@ class ProductType extends AbstractType
             'FK_category_id',
             ChoiceType::class,
             [
-                'label' => 'Kategoria ',
+                'label' => 'label.category',
                 'required' => true,
                 'attr' => array('class' => 'form-control'),
                 /*'placeholder' => 'Wybierz kategorię',*/

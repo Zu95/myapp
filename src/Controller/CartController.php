@@ -7,6 +7,7 @@
 namespace Controller;
 
 use Form\AddToCartType;
+use Repository\CartRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Provider\CartProvider;
 use Silex\Api\ControllerProviderInterface;
@@ -45,12 +46,15 @@ class CartController implements ControllerProviderInterface
     public function indexAction(Application $app) //funkcja renderuje widok wszystkich zamowień
     {
         $categories = new Categories($app['db']);
+        $cartRepository = new CartRepository($app['db']);
         $cartProvider = new CartProvider($app['db']);
+        $cart = $cartProvider->findAll($app);
+        dump($cartProvider->findAll($app));
 
         return $app['twig']->render(
             'cart/index.html.twig',
             [
-                'cart' => $cartProvider->findAllData($app),
+                'cart' => $cartRepository->findAllData($app, $cart),
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),
                 'skitouring' => $categories->findAllByParent(3),
@@ -69,6 +73,8 @@ class CartController implements ControllerProviderInterface
             $qty = $product['qty'];
             $cartProvider = new CartProvider($app['db']);
             $cartProvider->addToCart($app, $id, $qty);
+
+            dump($app['session']->get('cart'));
             $app['session']->getFlashBag()->add(
                 'messages',
                 [
@@ -76,9 +82,19 @@ class CartController implements ControllerProviderInterface
                     'message' => 'message.successfully_added',
                 ]
             );
-            return $app->redirect($app['url_generator']->generate('cart_index'), 301);
+            /*return $app->redirect($app['url_generator']->generate('cart_index'), 301);*/
         }
-        return $app->redirect($app['url_generator']->generate(('cart_index')), 301);
+        /*return $app->redirect($app['url_generator']->generate(('cart_index')), 301);*/
+        return $app['twig']->render(
+            'cart/index.html.twig',
+            [
+                'cart' => $cartRepository->findAllData($app, $cart),
+                'climbing' => $categories->findAllByParent(1),
+                'winter' => $categories->findAllByParent(2),
+                'skitouring' => $categories->findAllByParent(3),
+                'camping' => $categories->findAllByParent(4)
+            ]
+        );
     }
 
 

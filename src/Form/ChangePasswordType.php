@@ -28,8 +28,8 @@ class ChangePasswordType extends AbstractType
         $builder->add('password', RepeatedType::class,[
 
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password',),
+                'first_options'  => array('label' => 'label.new_password'),
+                'second_options' => array('label' => 'label.repeat_password',),
                 'invalid_message' => 'The password fields must match.',
                 'required' => true,
                 'options' => array('attr' => array(

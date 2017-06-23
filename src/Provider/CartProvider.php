@@ -5,9 +5,8 @@
 namespace Provider;
 
 use Doctrine\DBAL\Connection;
-use Repository\ProductRepository;
 use Silex\Application;
-use Repository\UserRepository;
+
 
 
 /**
@@ -47,75 +46,23 @@ class CartProvider
 
     }
 
-    /**
-     * @param Application $app
-     * @return array
-     */
-    public function findAllData(Application $app)
-    {
-        $productRepository = new ProductRepository($app['db']);
-        $cart = $app['session']->get('cart');
-        $cartData = [];
-
-        foreach($cart as $product){
-            $id = $product['product_id'];
-            $productData = $productRepository->findOneById($id);
-            array_push($cartData, [
-                'product_id' => $id,
-                'name' => $productData['name'],
-                'img' => $productData['img'],
-                'price' => $productData['price'],
-                ]
-            );
-        }
-
-        return $cartData;
-
-    }
 
     public function addToCart(Application $app, $id, $qty)
     {
         $cart = $app['session']->get('cart');
 
+        dump($cart);
+
         array_push($cart, ['product_id' => $id, 'qty' => $qty]);
+
+        dump($cart);
 
         return $app['session']->set('cart', $cart);
 
 
     }
 
-    public function borrow(Application $app, $borrow_data)
-    {
-        $cart = $app['session']->get('cart');
-        $userRepository = new UserRepository($app['db']);
-        $token = $app['security.token_storage']->getToken();
-        if (null !== $token) {
-            $username = $token->getUser()->getUsername();
-        }
-        $user_data = $userRepository->getUserByLogin($username);
-        $user_id = $user_data['user_id'];
-        $borrowed = [
-            'FK_user_id' => $user_id,
-            'date' => date(),
-            'order_price' => $borrow_data['order_price'],
-            'from' => $borrow_data['from'],
-            'to' => $borrow_data['to'],
-        ];
 
-        $this->db->beginTransaction();
-        $this->db->insert('borrowed', $borrowed);
-        $borrowedId = $this->db->lastInsertId();
-        foreach($cart as $product){
-            $addProduct = [
-                'FK_borrowed_id' => $borrowedId,
-                'FK_product_id' => $product['product_id'],
-                'qty' => $product['qty'],
-            ];
-            $this->db->insert('borrowed_data', $addProduct);
-        }
-
-        return $this->db->commit();
-    }
     /**
      * Remove record from cart.
      *
@@ -131,7 +78,7 @@ class CartProvider
                 unset($product);
             }
         }
-        return true;
+        return $app['session']->set('cart', $cart);
     }
 
 

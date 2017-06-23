@@ -5,13 +5,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Panel Administracyjny</h1>
+                        <h1>{{ view.admin|trans }}</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
-                            <li><a href="{{ url('admin_index') }}">Panel administracyjny</a></li>
-                            <li>Użytkownicy</li>
+                            <li><a href="{{ url('homepage') }}">{{ view.homepage|trans }}</a></li>
+                            <li><a href="{{ url('admin_index') }}">{{ view.admin|trans }}</a></li>
+                            <li>{{ view.users|trans }}</li>
                         </ul>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                                     <th>Email</th>
                                     <th>Adres</th>
                                     <th>Dodatkowe informacje</th>
-                                    <th>Edytuj</th>
+                                    <th>Akcja</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -49,7 +49,8 @@
                                         <td>{{ row.email }}</td>
                                         <td>{{ row.adress }}</td>
                                         <td>{{ row.information }}</td>
-                                        <td><a href="{{ url('admin_user_edit', {'id': row.user_id}) }}" class="btn btn-template-main btn-sm">Edytuj</a></td>
+                                        <td><a href="{{ url('admin_user_edit', {'id': row.user_id}) }}" class="btn btn-template-main btn-sm">{{ action.edit|trans }}</a>
+                                            <a href="{{ url('admin_password_change', {'id': row.user_id}) }}" class="btn btn-template-main btn-sm">{{ action.change_password|trans }}</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

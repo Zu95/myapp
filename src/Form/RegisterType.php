@@ -30,7 +30,7 @@ class RegisterType extends AbstractType
             'username',
             TextType::class,
             [
-                'label' => 'label.login',
+                'label' => 'label.username',
                 'required' => true,
                 'attr' => [
                     'max_length' => 32,
@@ -145,7 +145,7 @@ class RegisterType extends AbstractType
             'email',
             EmailType::class,
             [
-                'label' => 'label.surname',
+                'label' => 'label.email',
                 'required' => true,
                 'attr' => [
                     'max_length' => 45,
@@ -168,7 +168,7 @@ class RegisterType extends AbstractType
                     new Assert\Email(
                         [
                             'groups' => ['login-default'],
-                            'message' => "This is not an email"
+                            'message' => "message.not_email"
                         ]
                     ),
                 ],

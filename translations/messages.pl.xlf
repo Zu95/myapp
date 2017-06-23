@@ -38,6 +38,129 @@
                 <source>text.browse_all</source>
                 <target>Przeglądaj wszystkie kategorie</target>
             </trans-unit>
+            <trans-unit id="view.homepage">
+                <source>view.homepage</source>
+                <target>Strona główna</target>
+            </trans-unit>
+            <trans-unit id="view.admin">
+                <source>view.admin</source>
+                <target>Panel administracyjny</target>
+            </trans-unit>
+            <trans-unit id="view.changepassword">
+                <source>view.changepassword</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="view.customer">
+                <source>view.customer</source>
+                <target>Panel użytkownika</target>
+            </trans-unit>
+            <trans-unit id="view.users">
+                <source>view.users</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+
+
+            <trans-unit id="message.record_not_found">
+                <source>message.record_not_found</source>
+                <target>Błąd - nie znaleziono rekordu</target>
+            </trans-unit>
+            <trans-unit id="message.element_successfully_edited">
+                <source>message.element_successfully_edited</source>
+                <target>Edycja się udała</target>
+            </trans-unit>
+            <trans-unit id="message.password_successfully_changed">
+                <source>message.password_successfully_changed</source>
+                <target>Hasło zostało zmienione</target>
+            </trans-unit>
+            <trans-unit id="message.account_successfully_created">
+                <source>message.account_successfully_created</source>
+                <target>Konto zostało utworzone</target>
+            </trans-unit>
+            <trans-unit id="message.successfully_added">
+                <source>message.successfully_added</source>
+                <target>Dodano do koszyka</target>
+            </trans-unit>
+            <trans-unit id="message.element_successfully_added">
+                <source>message.element_successfully_added</source>
+                <target>Dodano nowy produkt</target>
+            </trans-unit>
+            <trans-unit id="message.element_successfully_deleted">
+                <source>message.element_successfully_deleted</source>
+                <target>Pomyślnie usunięto</target>
+            </trans-unit>
+            <trans-unit id="message.not_email">
+                <source>message.not_email</source>
+                <target>To nie jest email</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nowe hasło</target>
+            </trans-unit>
+            <trans-unit id="label.repeat_password">
+                <source>label.repeat_password</source>
+                <target>Powtórz hasło</target>
+            </trans-unit>
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Nazwa</target>
+            </trans-unit>
+            <trans-unit id="label.detail">
+                <source>label.detail</source>
+                <target>Opis produktu</target>
+            </trans-unit>
+            <trans-unit id="label.price">
+                <source>label.price</source>
+                <target>Cena w PLN</target>
+            </trans-unit>
+            <trans-unit id="label.img">
+                <source>label.img</source>
+                <target>Zdjęcie</target>
+            </trans-unit>
+            <trans-unit id="label.qty">
+                <source>label.qty</source>
+                <target>Ilość</target>
+            </trans-unit>
+            <trans-unit id="label.category">
+                <source>label.category</source>
+                <target>Kategoria</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Nazwa użytkownika</target>
+            </trans-unit>
+            <trans-unit id="label.firstname">
+                <source>label.firstname</source>
+                <target>Imię</target>
+            </trans-unit>
+            <trans-unit id="label.surname">
+                <source>label.surname</source>
+                <target>Nazwisko</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.surname</source>
+                <target>Nazwisko</target>
+            </trans-unit>
+            <trans-unit id="label.telephone">
+                <source>label.telephone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="label.adress">
+                <source>label.adress</source>
+                <target>Adres</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

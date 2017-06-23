@@ -123,7 +123,7 @@ class CategoryRepository
     /*
      * Query all records
      */
-    protected function queryAll() //pobiera dane wszystkich
+    protected function queryAll()
     {
         $queryBuilder = $this->db->createQueryBuilder();
 
