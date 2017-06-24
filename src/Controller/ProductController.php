@@ -81,6 +81,7 @@ class ProductController implements ControllerProviderInterface
     }
 
     /*
+     * Redirect to all products
      * categoryAction
      * function redirect to all products list
      * */
@@ -88,10 +89,13 @@ class ProductController implements ControllerProviderInterface
     {
         return $app->redirect($app['url_generator']->generate('category_index'));
     }
-/*
- * addAction
- * add new product
- * */
+
+    /**
+     * Add new product
+     * @param Application $app
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function addAction(Application $app, Request $request)
     {
         $product = [];
@@ -136,11 +140,15 @@ class ProductController implements ControllerProviderInterface
 
         );
     }
-    /*
-     * Public function editAction
-     *
-     * */
 
+
+    /**
+     * Edit one product
+     * @param Application $app
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function editAction(Application $app, $id, Request $request)
     {
         $productRepository = new ProductRepository($app['db']);
@@ -201,6 +209,13 @@ class ProductController implements ControllerProviderInterface
         );
     }
 
+    /**
+     * Delete product
+     * @param Application $app
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteAction(Application $app, $id, Request $request)
     {
         $productRepository = new ProductRepository($app['db']);

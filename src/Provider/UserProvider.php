@@ -26,7 +26,7 @@ class UserProvider implements UserProviderInterface
     protected $db;
 
     /**
-     * TagRepository constructor.
+     * User Provider constructor.
      *
      * @param \Doctrine\DBAL\Connection $db
      */

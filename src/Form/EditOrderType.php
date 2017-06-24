@@ -32,7 +32,7 @@ class EditOrderType extends AbstractType
             'order_price',
             NumberType::class,
             [
-                'label' => 'Wartość zamówienia ',
+                'label' => 'label.order_price',
                 'required' => true,
                 'attr' => array('class' => 'form-control'),
                 'constraints' => [
@@ -55,7 +55,7 @@ class EditOrderType extends AbstractType
             'status',
             ChoiceType::class,
             [
-                'label' => 'Status ',
+                'label' => 'label.status',
                 'required' => true,
                 'attr' => array('class' => 'form-control'),
                 'choices' => $this->prepareStatus(),

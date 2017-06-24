@@ -229,6 +229,10 @@ class UserRepository
 
     }
 
+    /**
+     * Edit user data
+     * @param $user
+     */
     public function save($user)
     {
 
@@ -254,6 +258,12 @@ class UserRepository
         return $this->db->commit();
     }
 
+    /**
+     * Change users password
+     * @param Application $app
+     * @param $user
+     * @return int
+     */
     public function changePassword(Application $app, $user)
     {
             $user['password'] = $app['security.encoder.bcrypt']->encodePassword($user['password'], '');

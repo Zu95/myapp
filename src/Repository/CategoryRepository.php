@@ -97,6 +97,11 @@ class CategoryRepository
         return $paginator->getCurrentPageResults();
     }
 
+    /**
+     * Query category data
+     * @param $id
+     * @return array|mixed
+     */
     public function queryCategory($id)
     {
         $queryBuilder = $this->db->createQueryBuilder();

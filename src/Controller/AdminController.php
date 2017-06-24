@@ -71,6 +71,7 @@ class AdminController implements ControllerProviderInterface
     }
 
     /**
+     * Preview all orders
      * @param Application $app
      * @return mixed
      */
@@ -92,6 +93,7 @@ class AdminController implements ControllerProviderInterface
     }
 
     /**
+     * Edit one order
      * @param Application $app
      * @param $id
      * @param Request $request
@@ -122,6 +124,7 @@ class AdminController implements ControllerProviderInterface
 
         if ($form->isSubmitted() && $form->isValid()) {
             $order  = $form->getData();
+            //jeżeli status zmieniony na zwrócono to oddać do bazy
             $orderRepository = new OrderRepository($app['db']);
             $orderRepository->save($order);
 
@@ -150,6 +153,7 @@ class AdminController implements ControllerProviderInterface
     }
 
     /**
+     * Preview all users
      * @param Application $app
      * @return mixed
      */
@@ -171,6 +175,7 @@ class AdminController implements ControllerProviderInterface
     }
 
     /**
+     * Edit one user data
      * @param Application $app
      * @param $id
      * @param Request $request
@@ -227,6 +232,13 @@ class AdminController implements ControllerProviderInterface
         );
     }
 
+    /**
+     * Change user's password
+     * @param Application $app
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function passwordAction(Application $app, $id, Request $request) //funkcja renderuje widok wszystkich zamowień
     {
         $userRepository = new UserRepository($app['db']);

@@ -42,6 +42,11 @@ class Categories
         return !$result ? [] : $result;
 
     }
+
+    /**
+     * Fetch all subcategories
+     * @return array
+     */
     public function findAllSub()
     {
         $queryBuilder = $this->db->createQueryBuilder();
@@ -72,6 +77,11 @@ class Categories
 
     }
 
+    /**
+     * Find category data by product id
+     * @param $id
+     * @return array|mixed
+     */
     public function findOneByProduct($id)
     {
         $queryBuilder = $this->db->createQueryBuilder();

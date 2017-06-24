@@ -39,10 +39,10 @@
                                                 {{ form_row(form.qty) }}
                                             </div>
 
-                                    <p class="price">{{ product.price }} zł</p> {# tutaj by mogło liczyć sumę z wybranej ilości #}
+                                    <p class="price">{{ product.price }} zł</p>
 
                                     <p class="text-center">
-                                        <input type="submit" value="{{ 'dodaj do koszyka' }}" class="btn btn-template-main" />
+                                        <input type="submit" value="{{ 'action.add_to_cart'|trans }}" class="btn btn-template-main" />
                                     </p>
 
                                 {{ form_end(form) }}

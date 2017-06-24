@@ -65,6 +65,11 @@ class CustomerController implements ControllerProviderInterface
         );
     }
 
+    /**
+     * Preview all orders by user
+     * @param Application $app
+     * @return mixed
+     */
     public function orderAction(Application $app) //funkcja renderuje widok wszystkich zamowień
     {
         $orderRepository = new OrderRepository($app['db']);
@@ -85,6 +90,12 @@ class CustomerController implements ControllerProviderInterface
         );
     }
 
+    /**
+     * See detailed one order
+     * @param Application $app
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function orderViewAction(Application $app, $id) //podgląd jednego zamówienia
     {
         $orderRepository = new OrderRepository($app['db']);
@@ -133,7 +144,13 @@ class CustomerController implements ControllerProviderInterface
     }
 
 
-    public function userAction(Application $app, Request $request) //funkcja edytuje usera
+    /**
+     * See and edit user data
+     * @param Application $app
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function userAction(Application $app, Request $request)
     {
 
         $userRepository = new UserRepository($app['db']);
@@ -191,7 +208,13 @@ class CustomerController implements ControllerProviderInterface
         );
     }
 
-    public function passwordAction(Application $app, Request $request) //funkcja renderuje widok wszystkich zamowień
+    /**
+     * Change user's password
+     * @param Application $app
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function passwordAction(Application $app, Request $request)
     {
         $userRepository = new UserRepository($app['db']);
         $categories = new Categories($app['db']);

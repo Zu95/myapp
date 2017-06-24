@@ -1,6 +1,6 @@
 <?php
 /**
- * Register form.
+ * EditUser Type.
  */
 
 namespace Form;

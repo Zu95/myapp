@@ -84,6 +84,12 @@ class AuthController implements ControllerProviderInterface
     }
 
 
+    /**
+     * Register action
+     * @param Application $app
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function registerAction(Application $app, Request $request)
     {
         $categories = new Categories($app['db']);

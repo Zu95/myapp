@@ -35,7 +35,7 @@ class CartRepository
     }
 
     /**
-     * Find one record.
+     * Find data for products in cart
      *
      * @param string $id Element id
      *
@@ -65,6 +65,26 @@ class CartRepository
 
     /**
      * @param Application $app
+     * @param $cart
+     * @return int
+     */
+    public function countSum(Application $app, $cart){
+        $sum = 0;
+        $productRepository = new ProductRepository($app['db']);
+
+        foreach($cart as $product){
+            $id = $product['product_id'];
+            $qty = $product['qty'];
+            $productData = $productRepository->findOneById($id);
+            $price = $productData['price'];
+            $amount = $price * $qty;
+            $sum = $sum + $amount;
+        }
+        return $sum;
+    }
+
+    /**
+     * @param Application $app
      * @param $borrow_data from BorrowType
      * @param $cart
      */
@@ -80,7 +100,7 @@ class CartRepository
 
         $borrowed = [
             'FK_user_id' => $user_id,
-            'date' => date('Y-m-d'),
+            'date' => getdate(),
             'order_price' => $borrow_data['order_price'],
             'from' => $borrow_data['from'],
             'to' => $borrow_data['to'],
@@ -89,7 +109,7 @@ class CartRepository
         $this->db->beginTransaction();
         $this->db->insert('borrowed', $borrowed);
         $borrowedId = $this->db->lastInsertId();
-        foreach($cart as $product){
+        foreach($cart as $product){ //dopisać odejmowanie z tablicy product!!
             $addProduct = [
                 'FK_borrowed_id' => $borrowedId,
                 'FK_product_id' => $product['product_id'],
@@ -101,5 +121,6 @@ class CartRepository
         return $this->db->commit();
     }
 
+    //dopisać funkcję która oddaje!
 
 }

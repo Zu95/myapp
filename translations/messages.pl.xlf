@@ -3,8 +3,12 @@
     <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="add_to_cart">
-                <source>add_to_cart</source>
+                <source>action.add_to_cart</source>
                 <target>Dodaj do koszyka</target>
+            </trans-unit>
+            <trans-unit id="curr">
+                <source>curr</source>
+                <target>zł</target>
             </trans-unit>
             <trans-unit id="descript">
                 <source>descript</source>
@@ -17,10 +21,6 @@
             <trans-unit id="categories">
                 <source>categories</source>
                 <target>Kategorie</target>
-            </trans-unit>
-            <trans-unit id="main_page">
-                <source>main_page</source>
-                <target>Strona Główna</target>
             </trans-unit>
             <trans-unit id="szpejara">
                 <source>szpejara</source>
@@ -88,10 +88,24 @@
                 <source>message.element_successfully_deleted</source>
                 <target>Pomyślnie usunięto</target>
             </trans-unit>
+            <trans-unit id="message.successfully_deleted">
+                <source>message.successfully_deleted</source>
+                <target>Pomyślnie usunięto</target>
+            </trans-unit>
             <trans-unit id="message.not_email">
                 <source>message.not_email</source>
                 <target>To nie jest email</target>
             </trans-unit>
+            <trans-unit id="message.order_successfully_made">
+                <source>message.order_successfully_made</source>
+                <target>Zamówienie złożone poprawnie. Sprawdź swoje zamówienia w panelu użytkownika.</target>
+            </trans-unit>
+            <trans-unit id="message.cart_cleared">
+                <source>message.cart_cleared</source>
+                <target>Koszyk wyczyszczony</target>
+            </trans-unit>
+
+
             <trans-unit id="label.password">
                 <source>label.password</source>
                 <target>Hasło</target>
@@ -115,6 +129,10 @@
             <trans-unit id="label.price">
                 <source>label.price</source>
                 <target>Cena w PLN</target>
+            </trans-unit>
+            <trans-unit id="label.order_price">
+                <source>label.order_price</source>
+                <target>Cena zamówienia w PLN</target>
             </trans-unit>
             <trans-unit id="label.img">
                 <source>label.img</source>
@@ -152,6 +170,20 @@
                 <source>label.adress</source>
                 <target>Adres</target>
             </trans-unit>
+            <trans-unit id="label.from">
+                <source>label.from</source>
+                <target>Od</target>
+            </trans-unit>
+            <trans-unit id="label.to">
+                <source>label.to</source>
+                <target>Do</target>
+            </trans-unit>
+            <trans-unit id="label.status">
+                <source>label.status</source>
+                <target>Status</target>
+            </trans-unit>
+
+
             <trans-unit id="action.edit">
                 <source>action.edit</source>
                 <target>Edytuj</target>
@@ -163,6 +195,28 @@
             <trans-unit id="action.delete">
                 <source>action.delete</source>
                 <target>Usuń</target>
+            </trans-unit>
+
+
+            <trans-unit id="status.new">
+                <source>status.new</source>
+                <target>Nowe</target>
+            </trans-unit>
+            <trans-unit id="status.ready">
+                <source>status.ready</source>
+                <target>Gotowe do odbioru</target>
+            </trans-unit>
+            <trans-unit id="status.borrowed">
+                <source>status.borrowed</source>
+                <target>Wypożyczone</target>
+            </trans-unit>
+            <trans-unit id="status.returned">
+                <source>status.returned</source>
+                <target>Zwrócone</target>
+            </trans-unit>
+            <trans-unit id="status.cancelled">
+                <source>status.cancelled</source>
+                <target>Anulowane</target>
             </trans-unit>
 
         </body>

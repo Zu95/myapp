@@ -53,6 +53,11 @@ class ProductRepository
 
     }
 
+    /**
+     * Save or add new product
+     * @param $product
+     * @return int
+     */
     public function save($product)
     {
         if (isset($product['product_id']) && ctype_digit((string) $product['product_id'])) {

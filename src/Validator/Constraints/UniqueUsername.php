@@ -28,7 +28,7 @@ class UniqueUsername extends Constraint
     public $elementId = null;
 
     /**
-     * Tag repository.
+     * User repository.
      *
      * @var null|\Repository\UserRepository $repository
      */

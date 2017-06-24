@@ -59,6 +59,14 @@ class CategoryController implements ControllerProviderInterface
             ]
         );
     }
+
+    /**
+     * Preview one category
+     * @param Application $app
+     * @param $id
+     * @param int $page
+     * @return mixed
+     */
     public function viewAction(Application $app, $id, $page = 1) //funkcja renderuje produkty z danej kategorii
     {
         $categoryRepository = new CategoryRepository($app['db']);
