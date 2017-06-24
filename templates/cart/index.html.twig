@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>
                                         <a href="{{ url('product_view', {'id': row.product_id}) }}">
-                                            <img src="/uploads/photos/{{ row.img }}" alt="{{ row.name }}">
+                                            <img src="{{ asset('uploads/photos/' ~ row.img) }}" alt="{{ row.name }}">
                                         </a>
                                     </td>
                                     <td><a href="{{ url('product_view', {'id': row.product_id}) }}">{{ row.name }}</a>

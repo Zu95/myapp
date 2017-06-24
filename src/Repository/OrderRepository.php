@@ -41,7 +41,7 @@ class OrderRepository
     public function findDataById($id)
     {
         $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder->select('bd.FK_borrowed_id', 'bd.FK_product_id', 'bd.product_price', 'bd.qty', 'p.name', 'p.img')
+        $queryBuilder->select('bd.FK_borrowed_id', 'bd.FK_product_id', 'p.price', 'bd.qty', 'p.name', 'p.img')
             ->from('borrowed_data', 'bd')
             ->innerJoin('bd', 'products', 'p', 'p.product_id = bd.FK_product_id')
             ->where('bd.FK_borrowed_id = :id')
@@ -60,7 +60,7 @@ class OrderRepository
     public function findDataByUserById($id, $username)
     {
         $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder->select('bd.FK_borrowed_id', 'bd.FK_product_id', 'bd.product_price', 'bd.qty', 'p.name', 'p.img')
+        $queryBuilder->select('bd.FK_borrowed_id', 'bd.FK_product_id', 'p.price', 'bd.qty', 'p.name', 'p.img')
             ->from('borrowed_data', 'bd')
             ->innerJoin('bd', 'products', 'p', 'p.product_id = bd.FK_product_id')
             ->innerJoin('bd', 'borrowed', 'b', 'b.borrowed_id = bd.FK_borrowed_id')
@@ -100,7 +100,7 @@ class OrderRepository
     public function findOneByUserById($id, $username)
     {
         $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
+        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.days', 'ud.firstname', 'ud.surname')
             ->from('borrowed', 'b')
             ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id')
             ->innerJoin('ud', 'users', 'u', 'u.user_id = ud.FK_user_id')
@@ -118,7 +118,7 @@ class OrderRepository
     public function findAll()
     {
         $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
+        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.order_price', 'b.status', 'b.days', 'ud.firstname', 'ud.surname')
             ->from('borrowed', 'b')
             ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id')
             ->orderBy('b.status', 'ASC');
@@ -135,7 +135,7 @@ class OrderRepository
     public function findAllByUsername($username)
     {
         $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.from', 'b.to', 'ud.firstname', 'ud.surname')
+        $queryBuilder->select('b.borrowed_id', 'b.FK_user_id', 'b.date', 'b.order_price', 'b.status', 'b.days', 'ud.firstname', 'ud.surname')
             ->from('borrowed', 'b')
             ->innerJoin('b', 'users_data', 'ud', 'ud.FK_user_id = b.FK_user_id')
             ->innerJoin('ud', 'users', 'u', 'u.user_id = ud.FK_user_id')

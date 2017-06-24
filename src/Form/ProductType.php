@@ -138,7 +138,6 @@ class ProductType extends AbstractType
                 'label' => 'label.category',
                 'required' => true,
                 'attr' => array('class' => 'form-control'),
-                /*'placeholder' => 'Wybierz kategorię',*/
                 'choices' => $this->prepareCategoriesForChoices($options['category_repository']),
                 'constraints' => [
                     new Assert\NotBlank(

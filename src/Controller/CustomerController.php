@@ -79,6 +79,7 @@ class CustomerController implements ControllerProviderInterface
             $username = $token->getUser()->getUsername();
         }
 
+
         return $app['twig']->render(
             'customer/order.html.twig',
             [   'orders' => $orderRepository->findAllByUsername($username),
@@ -248,6 +249,7 @@ class CustomerController implements ControllerProviderInterface
         return $app['twig']->render(
             'customer/changePassword.html.twig',
             [   'user' => $userRepository->findOneById($id),
+                'user_id' => $id,
                 'form' => $form->CreateView(),
                 'climbing' => $categories->findAllByParent(1),
                 'winter' => $categories->findAllByParent(2),

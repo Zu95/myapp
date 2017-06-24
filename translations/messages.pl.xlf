@@ -68,7 +68,14 @@
                 <source>view.products</source>
                 <target>Produkty</target>
             </trans-unit>
-
+            <trans-unit id="view.product_add">
+                <source>view.product_add</source>
+                <target>Dodaj produkt</target>
+            </trans-unit>
+            <trans-unit id="view.customers">
+                <source>view.customers</source>
+                <target>Zobacz użytkowników</target>
+            </trans-unit>
 
             <trans-unit id="message.record_not_found">
                 <source>message.record_not_found</source>
@@ -120,6 +127,10 @@
             <trans-unit id="label.role">
                 <source>label.role</source>
                 <target>Rola</target>
+            </trans-unit>
+            <trans-unit id="label.days">
+                <source>label.days</source>
+                <target>Ilość dni</target>
             </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>

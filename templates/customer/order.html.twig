@@ -29,9 +29,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Status</th>
-                                    <th>Data</th>
-                                    <th>Od</th>
-                                    <th>Do</th>
+                                    <th>Dni</th>
                                     <th>Wartość</th>
                                     <th>Przeglądaj</th>
                                 </tr>
@@ -40,12 +38,10 @@
                                 {% for row in orders %}
                                     <tr>
                                         <th>#{{ row.borrowed_id }}</th>
-                                        <td>Status</td>
-                                        <td>{{ row.date }}</td>
-                                        <td>{{ row.from }}</td>
-                                        <td>{{ row.to }}</td>
+                                        <td>{{ row.status }}</td>
+                                        <td>{{ row.days }}</td>
                                         <td>{{ row.order_price }}</td>
-                                        <td><a href="{{ url('customer_order_index', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                        <td><a href="{{ url('customer_order_view', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

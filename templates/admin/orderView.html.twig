@@ -71,10 +71,10 @@
                                 {% for row in order_data %}
                                     <tr>
                                         <th>#{{ row.FK_product_id }}</th>
-                                        <td><img src="/uploads/photos/{{ row.img }}" alt="{{ row.name }}" class="img-responsive"></td>
+                                        <td><img src="{{ asset('uploads/photos/' ~ product.img) }}" alt="{{ row.name }}" class="img-responsive"></td>
                                         <td>{{ row.name }}</td>
                                         <td>{{ row.qty }}</td>
-                                        <td>{{ row.product_price }}</td>
+                                        <td>{{ row.price }}</td>
                                         <td><a href="{{ url('product_view', {'id': row.FK_product_id}) }}" class="btn btn-template-main btn-sm">{{ 'action.view'|trans }}</a></td>
                                     </tr>
                                 {% endfor %}

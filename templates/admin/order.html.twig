@@ -30,9 +30,7 @@
                             <th>{{ 'table.id'|trans }}</th>
                             <th>{{ 'table.customer'|trans }}</th>
                             <th>{{ 'table.status'|trans }}</th>
-                            <th>{{ 'label.data'|trans }}</th>
-                            <th>{{ 'label.from'|trans }}</th>
-                            <th>{{ 'label.to'|trans }}</th>
+                            <th>{{ 'label.days'|trans }}</th>
                             <th>{{ 'label.price'|trans }}</th>
                             <th>{{ 'action.view'|trans }}</th>
                         </tr>
@@ -42,10 +40,8 @@
                             <tr>
                                 <th>#{{ row.borrowed_id }}</th>
                                 <td>{{ row.firstname }} {{ row.surname }}</td>
-                                <td>Status</td>
-                                <td>{{ row.date }}</td>
-                                <td>{{ row.from }}</td>
-                                <td>{{ row.to }}</td>
+                                <td>{{ row.status }}</td>
+                                <td>{{ row.days }}</td>
                                 <td>{{ row.order_price }}</td>
                                 <td><a href="{{ url('admin_order_view', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">{{ 'action.view'|trans }}</a></td>
                             </tr>

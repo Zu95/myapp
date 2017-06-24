@@ -21,12 +21,12 @@
                             <a href="{{ url('auth_logout') }}" title="{{ 'auth.logout.label'|trans }}">
                                 <i class="fa fa-sign-out"></i><span class="hidden-xs text-uppercase">Wyloguj się</span>
                             </a>
-                            <a href=""><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Moje konto</span></a>
+                            <a href="{{ url('customer_index') }}"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Moje konto</span></a>
                         {% else %}
                             <a href="{{ url('auth_login') }}" title="{{ 'auth.login.label'|trans }}">
                                 <i class="fa fa-sign-in"></i><span class="hidden-xs text-uppercase">Logowanie</span>
                             </a>
-                            <a href="customer-register.html"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Rejestracja</span></a>
+                            <a href="{{ url('auth_login') }}"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Rejestracja</span></a>
                         {% endif %}
 
 

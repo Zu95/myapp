@@ -27,7 +27,7 @@
                     <div class="product">
                         <div class="image">
                             <a href="{{ url('product_view', {'id': row.product_id}) }}">
-                                <img src="/uploads/photos/{{ row.img }}" alt="{{ row.name }}" class="img-responsive image1">
+                                <img src="{{ asset('uploads/photos/' ~ row.img) }}" alt="{{ row.name }}" class="img-responsive image1">
                             </a>
                         </div>
                         <!-- /.image -->

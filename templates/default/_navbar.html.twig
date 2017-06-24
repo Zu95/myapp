@@ -90,7 +90,8 @@
                             </ul>
                         </li>
     {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ url('admin_index') }}">Panel administracyjny</a> </li>
+                        <li><a href="{{ url('admin_index') }}">{{ 'view.admin'|trans }}</a> </li>
+        <li><a href="{{ url('product_add') }}">{{ 'view.product_add'|trans }}</a> </li>
         {% endif %}
                     </ul>
 

@@ -97,17 +97,19 @@ class CartRepository
         }
         $user_data = $userRepository->getUserByLogin($username);
         $user_id = $user_data['user_id'];
+        $order_price = $borrow_data['order_price']*$borrow_data['days'];
 
         $borrowed = [
+            'status' => 1,
             'FK_user_id' => $user_id,
-            'order_price' => $borrow_data['order_price'],
+            'order_price' => $order_price,
             'days' => $borrow_data['days'],
         ];
 
         $this->db->beginTransaction();
         $this->db->insert('borrowed', $borrowed);
         $borrowedId = $this->db->lastInsertId();
-        foreach($cart as $product){ //dopisać odejmowanie z tablicy product!!
+        foreach($cart as $product){
             $addProduct = [
                 'FK_borrowed_id' => $borrowedId,
                 'FK_product_id' => $product['product_id'],
@@ -119,6 +121,5 @@ class CartRepository
         return $this->db->commit();
     }
 
-    //dopisać funkcję która oddaje!
 
 }
