@@ -5,13 +5,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Panel Administracyjny</h1>
+                        <h1>{{ 'view.admin'|trans }}</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
-                            <li><a href="{{ url('admin_index') }}">Panel administracyjny</a></li>
-                            <li>Zamówienia</li>
+                            <li><a href="{{ url('homepage') }}">{{ 'view.homepage'|trans }}</a></li>
+                            <li><a href="{{ url('admin_index') }}">{{ 'view.admin'|trans }}</a></li>
+                            <li>{{ 'view.orders'|trans }}</li>
                         </ul>
                     </div>
                 </div>
@@ -27,14 +27,14 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Zamawiający</th>
-                            <th>Status</th>
-                            <th>Data</th>
-                            <th>Od</th>
-                            <th>Do</th>
-                            <th>Wartość</th>
-                            <th>Przeglądaj</th>
+                            <th>{{ 'table.id'|trans }}</th>
+                            <th>{{ 'table.customer'|trans }}</th>
+                            <th>{{ 'table.status'|trans }}</th>
+                            <th>{{ 'label.data'|trans }}</th>
+                            <th>{{ 'label.from'|trans }}</th>
+                            <th>{{ 'label.to'|trans }}</th>
+                            <th>{{ 'label.price'|trans }}</th>
+                            <th>{{ 'action.view'|trans }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,7 +47,7 @@
                                 <td>{{ row.from }}</td>
                                 <td>{{ row.to }}</td>
                                 <td>{{ row.order_price }}</td>
-                                <td><a href="{{ url('admin_order_view', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                <td><a href="{{ url('admin_order_view', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">{{ 'action.view'|trans }}</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

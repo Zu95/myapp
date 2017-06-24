@@ -5,13 +5,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Zamówienie #{{ order.borrowed_id }}</h1>
+                        <h1>{{ 'view.order'|trans }} #{{ order.borrowed_id }}</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
-                            <li><a href="{{ url('admin_index') }}">Panel administracyjny</a></li>
-                            <li>Zamówienia</li>
+                            <li><a href="{{ url('homepage') }}">{{ 'view.homepage'|trans }}</a></li>
+                            <li><a href="{{ url('admin_index') }}">{{ 'view.admin'|trans }}</a></li>
+                            <li>{{ 'view.orders'|trans }}</li>
                         </ul>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
 
                     <div class="row">
                         <div class="col-sm-6 col-md-3">
-                            Klient: <a href="{{ url('admin_user_edit', {'id': order.FK_user_id}) }}"> {{ order.firstname }} {{ order.surname }}</a>
+                            {{ 'table.customer'|trans }} <a href="{{ url('admin_user_edit', {'id': order.FK_user_id}) }}"> {{ order.firstname }} {{ order.surname }}</a>
                         </div>
                         <div class="col-sm-6 col-md-3">
-                            Data zamówienia: {{ order.date }}
+                            {{ 'table.date'|trans }} {{ order.date }}
                         </div>
                     </div>
 
@@ -59,12 +59,12 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Zdjęcie</th>
-                                    <th>Produkt</th>
-                                    <th>Ilość</th>
-                                    <th>Wartość</th>
-                                    <th>Akcja</th>
+                                    <th>{{ 'table.id'|trans }}</th>
+                                    <th>{{ 'label.img'|trans }}</th>
+                                    <th>{{ 'label.name'|trans }}</th>
+                                    <th>{{ 'label.qty'|trans }}</th>
+                                    <th>{{ 'label.price'|trans }}</th>
+                                    <th>{{ 'action'|trans }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,7 +75,7 @@
                                         <td>{{ row.name }}</td>
                                         <td>{{ row.qty }}</td>
                                         <td>{{ row.product_price }}</td>
-                                        <td><a href="{{ url('product_view', {'id': row.FK_product_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                        <td><a href="{{ url('product_view', {'id': row.FK_product_id}) }}" class="btn btn-template-main btn-sm">{{ 'action.view'|trans }}</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

@@ -39,7 +39,7 @@
                                                 {{ form_row(form.qty) }}
                                             </div>
 
-                                    <p class="price">{{ product.price }} zł</p>
+                                    <p class="price">{{ product.price }} {{ 'curr'|trans }}</p>
 
                                     <p class="text-center">
                                         <input type="submit" value="{{ 'action.add_to_cart'|trans }}" class="btn btn-template-main" />
@@ -60,8 +60,8 @@
 
                     </div>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ url('product_edit', {'id': product.product_id}) }}" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i>Edytuj</a>
-                    <a href="{{ url('product_delete', {'id': product.product_id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i>Usuń</a>
+                    <a href="{{ url('product_edit', {'id': product.product_id}) }}" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i>{{ 'action.edit'|trans }}</a>
+                    <a href="{{ url('product_delete', {'id': product.product_id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i>{{ 'action.delete'|trans }}</a>
                     {% endif %}
 
                 </div>

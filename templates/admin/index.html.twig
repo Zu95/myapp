@@ -5,12 +5,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Panel Administracyjny</h1>
+                        <h1>{{ 'view.admin'|trans }}</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
-                            <li>Panel administracyjny</li>
+                            <li><a href="{{ url('homepage') }}">{{ 'view.homepage'|trans }}</a></li>
+                            <li>{{ 'view.admin'|trans }}</li>
                         </ul>
                     </div>
                 </div>
@@ -24,13 +24,13 @@
                     <div class="box">
                         <ul>
                             <li>
-                                <a href="{{ url('admin_order_index') }}">Wszystkie zamówienia</a>
+                                <a href="{{ url('admin_order_index') }}">{{ 'view.orders'|trans }}</a>
                             </li>
                             <li>
-                                <a href="{{ url('admin_user_index') }}">Zarządzanie użytkownikami</a>
+                                <a href="{{ url('admin_user_index') }}">{{ 'view.customers'|trans }}</a>
                             </li>
                             <li>
-                                <a href="{{ url('category_index') }}">Przeglądaj produkty</a>
+                                <a href="{{ url('category_index') }}">{{ 'view.products'|trans }}</a>
                             </li>
                         </ul>
                     </div>
