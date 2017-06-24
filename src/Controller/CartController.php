@@ -8,7 +8,6 @@ namespace Controller;
 
 use Form\AddToCartType;
 use Form\OrderType;
-use Form\OrderSubmitType;
 use Repository\CartRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Provider\CartProvider;
@@ -71,8 +70,7 @@ class CartController implements ControllerProviderInterface
             $borrow_data = $form->getData();
             $sum = $cartRepository->countSum($app, $cart);
             $order_data = [
-                'from' => $borrow_data['from'],
-                'to' => $borrow_data['to'],
+                'days' => $borrow_data['days'],
                 'order_price' => $sum,
             ];
             $cartRepository->borrow($app, $order_data, $cart);
@@ -84,7 +82,7 @@ class CartController implements ControllerProviderInterface
                 ]
             );
 
-            return $app->redirect($app['url_generator']->generate('order_summary'), 301);
+            return $app->redirect($app['url_generator']->generate('customer_order_index'), 301);
         }
 
 

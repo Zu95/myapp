@@ -51,7 +51,7 @@
         <div class="col-sm-12">
 
 
-           {% include asset('default/_pagination.html.twig') with {
+           {% include 'default/_pagination.html.twig'  with {
             paginator: paginator,
             route_name: 'category_index_paginated',
             } %}

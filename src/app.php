@@ -31,9 +31,9 @@ $app->register(
         'db.options' => [
             'driver'    => 'pdo_mysql',
             'host'      => 'localhost',
-            'dbname'    => 'test',
+            'dbname'    => '15_krzysztofik',
             'user'      => '15_krzysztofik',
-            'password'  => '',
+            'password'  => 'K5p9y8m1p2',
             'charset'   => 'utf8',
             'driverOptions' => [
                 1002 => 'SET NAMES utf8',
@@ -111,7 +111,7 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
-/*$app['session']->set('cart', []);*/
+
 
 
 return $app;

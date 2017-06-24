@@ -1,0 +1,45 @@
+{% if paginator.pages_number > 0 %}
+
+    <div class="pages">
+        <ul class="pagination">
+            {% if paginator.page > 1 %}
+                {% set previous = (paginator.page - 1) %}
+                <li class="active">
+                    <a href="{{ url(route_name, {'id': current_category, 'page': previous}) }}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="#">&laquo;</a>
+                </li>
+            {%  endif %}
+
+            {% for i in range(1, paginator.pages_number) %}
+
+                {% if i == paginator.page %}
+                    <li class="active"><a href="#">{{ paginator.page }}</a> </li>
+                {% else %}
+                    <li><a href="{{ url(route_name, {'id': current_category, 'page': i}) }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+
+
+            {% if paginator.page < paginator.pages_number %}
+                {% set next = (paginator.page + 1) %}
+                <li class="active">
+                    <a href="{{ url(route_name, {'id': current_category, 'page': next} ) }}" >
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif  %}
+
+        </ul>
+    </div>
+
+{% endif %}

@@ -1,7 +1,7 @@
 {% extends 'index.html.twig' %}
 {% block body %}
         {% block breadcrumbs %}
-                {% include asset('default/_breadcrumbs.html.twig') with{
+                {% include 'default/_breadcrumbs.html.twig' with{
                 name: 'null',
                 category: category_data.category_name,
                 category_id: current_category,
@@ -43,7 +43,7 @@
         <div class="col-sm-12">
 
 
-            {% include asset('default/_paginationcategory.html.twig') with {
+            {% include 'default/_paginationcategory.html.twig' with {
             paginator: paginator,
             route_name: 'category_view_paginated',
             current_category: current_category

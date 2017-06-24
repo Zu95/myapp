@@ -6,6 +6,7 @@ namespace Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -24,34 +25,14 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+
         $builder->add(
-            'from',
-            DateTimeType::class,
+            'days',
+            NumberType::class,
             [
-                'label' => 'label.from',
+                'label' => 'label.days',
                 'required' => true,
-                'widget' => 'choice',
 
-                'input' => 'datetime',
-                'attr' => array('class' => 'form-control'),
-                'constraints' => [
-                    new Assert\NotBlank(
-                        ['groups' => ['order-default']]
-                    ),
-                    new Assert\GreaterThan("today"),
-                ],
-
-            ]
-        );
-        $builder->add(
-            'to',
-            DateTimeType::class,
-            [
-                'label' => 'label.to',
-                'required' => true,
-                'widget' => 'choice',
-
-                'input' => 'datetime',
                 'attr' => array('class' => 'form-control'),
                 'constraints' => [
                     new Assert\NotBlank(

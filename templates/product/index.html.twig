@@ -2,7 +2,7 @@
 {% block body %}
 {% if product|length %}
 {% block breadcrumbs %}
-    {% include asset('default/_breadcrumbs.html.twig') with{
+    {% include 'default/_breadcrumbs.html.twig' with{
         name : product.name,
         category : product.category_name,
         category_id : product.FK_category_id,
@@ -24,7 +24,7 @@
                     <div class="row" id="productMain">
                         <div class="col-sm-6">
                             <div id="mainImage">
-                                <img src="/uploads/photos/{{ product.img }}" alt="{{ product.name }}" class="img-responsive">
+                                <img src="/web/uploads/photos/{{ product.img }}" alt="{{ product.name }}" class="img-responsive">
                             </div>
 
                         </div>
@@ -70,7 +70,7 @@
 
                 <!-- *** LEFT COLUMN END *** -->
 
-                {% include asset('product/_rightmenu.html.twig') %}
+                {% include 'product/_rightmenu.html.twig' %}
 
             </div>
             <!-- /.row -->

@@ -100,10 +100,8 @@ class CartRepository
 
         $borrowed = [
             'FK_user_id' => $user_id,
-            'date' => getdate(),
             'order_price' => $borrow_data['order_price'],
-            'from' => $borrow_data['from'],
-            'to' => $borrow_data['to'],
+            'days' => $borrow_data['days'],
         ];
 
         $this->db->beginTransaction();
