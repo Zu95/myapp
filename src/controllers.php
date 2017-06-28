@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * controllers.php
+ *
+ * @copyright (c) 2017 Zuzanna Krzysztofik
+ */
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;

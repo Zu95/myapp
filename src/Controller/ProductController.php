@@ -18,7 +18,7 @@ use Service\FileUploader;
 
 
 /**
- * Class HelloController.
+ * Class ProductController.
  *
  * @package Controller
  */
@@ -50,14 +50,15 @@ class ProductController implements ControllerProviderInterface
 
         return $controller;
     }
+
     /**
-     * Index action.
-     *
-     * @param \Silex\Application $app Silex application
-     *
-     * @return string Response
+     * Index action
+     * View one product by id
+     * @param Application $app
+     * @param $id
+     * @return mixed
      */
-    public function indexAction(Application $app, $id) //funkcja renderuje widok pojedynczego produktu po id
+    public function indexAction(Application $app, $id)
     {
         $productRepository = new ProductRepository($app['db']);
         $product = [];
@@ -80,11 +81,12 @@ class ProductController implements ControllerProviderInterface
         );
     }
 
-    /*
-     * Redirect to all products
-     * categoryAction
-     * function redirect to all products list
-     * */
+
+    /**
+     * Redirect to category_index
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function categoryAction(Application $app)
     {
         return $app->redirect($app['url_generator']->generate('category_index'));
@@ -110,9 +112,11 @@ class ProductController implements ControllerProviderInterface
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $product  = $form->getData();
-            $fileUploader = new FileUploader($app['config.photos_directory']);
-            $fileName = $fileUploader->upload($product['img']);
-            $product['img'] = $fileName;
+            if(isset($form['img'])) {
+                $fileUploader = new FileUploader($app['config.photos_directory']);
+                $fileName = $fileUploader->upload($product['img']);
+                $product['img'] = $fileName;
+            }
             $productRepository = new ProductRepository($app['db']);
             $productRepository->save($product);
 
@@ -178,9 +182,11 @@ class ProductController implements ControllerProviderInterface
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product  = $form->getData();
-            $fileUploader = new FileUploader($app['config.photos_directory']);
-            $fileName = $fileUploader->upload($product['img']);
-            $product['img'] = $fileName;
+            if(isset($product['img'])) {
+                $fileUploader = new FileUploader($app['config.photos_directory']);
+                $fileName = $fileUploader->upload($product['img']);
+                $product['img'] = $fileName;
+            }
             $productRepository = new ProductRepository($app['db']);
             $productRepository->save($product);
 
@@ -234,10 +240,7 @@ class ProductController implements ControllerProviderInterface
             return $app->redirect($app['url_generator']->generate('category_index'));
         }
 
-        $form = $app['form.factory']->createBuilder(
-            ProductType::class,
-                $product,
-                ['category_repository' => new Categories($app['db'])])->add('id', HiddenType::class)->getForm();
+        $form = $app['form.factory']->createBuilder(FormType::class, $product)->add('id', HiddenType::class)->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

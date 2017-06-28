@@ -1,6 +1,6 @@
 <?php
 /**
- * Product type.
+ * Add to cart type.
  */
 namespace Form;
 
@@ -22,8 +22,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class AddToCartType extends AbstractType
 {
+
     /**
-     * {@inheritdoc}
+     * Form builder
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -48,9 +51,9 @@ class AddToCartType extends AbstractType
     }
 
 
-
     /**
-     * {@inheritdoc}
+     * Configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -63,6 +66,10 @@ class AddToCartType extends AbstractType
     }
 
 
+    /**
+     * Get block prefix
+     * @return string
+     */
     public function getBlockPrefix()
     {
         return 'add_to_cart_type';

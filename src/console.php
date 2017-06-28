@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * console.php
+ *
+ * @copyright (c) 2017 Zuzanna Krzysztofik
+ */
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

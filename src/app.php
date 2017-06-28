@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * app.php
+ *
+ * @copyright (c) 2017 Zuzanna Krzysztofik
+ */
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\TwigServiceProvider;

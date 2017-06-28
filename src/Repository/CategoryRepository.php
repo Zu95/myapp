@@ -59,14 +59,13 @@ class CategoryRepository
 
     }
 
+
     /**
-     * Find all records paginated by category
-     *
-     * @param string $id
-     *
+     * Find all products by category paginated
+     * @param int $page
+     * @param $id
      * @return array
      */
-
     public function findAllByCategoryPaginated($page = 1, $id)
     {
         $countQueryBuilder = $this->findAllByCategory($id)
@@ -79,9 +78,10 @@ class CategoryRepository
 
         return $paginator->getCurrentPageResults();
     }
+
     /**
      * Find all records paginated
-     *
+     * @param int $page
      * @return array
      */
     public function findAllPaginated($page = 1)
@@ -125,8 +125,10 @@ class CategoryRepository
             return !$result ? [] : $result;
         }
     }
-    /*
+
+    /**
      * Query all records
+     * @return \Doctrine\DBAL\Query\QueryBuilder
      */
     protected function queryAll()
     {
@@ -139,10 +141,5 @@ class CategoryRepository
             ;
     }
 
-    /**
-     * Count all pages.
-     *
-     * @return int Result
-     */
 
 }

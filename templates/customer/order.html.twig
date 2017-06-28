@@ -5,13 +5,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Moje zamówienia</h1>
+                        <h1>{{ 'action.change_password'|trans }}</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a href="{{ url('homepage') }}">Strona główna</a></li>
-                            <li><a href="{{ url('customer_index') }}">Panel klienta</a></li>
-                            <li>Moje Zamówienia</li>
+                            <li><a href="{{ url('homepage') }}">{{ 'view.homepage'|trans }}</a></li>
+                            <li><a href="{{ url('customer_index') }}">{{ 'view.customer'|trans }}</a></li>
+                            <li>{{ 'view.my_orders'|trans }}</li>
                         </ul>
                     </div>
                 </div>
@@ -27,11 +27,11 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Status</th>
-                                    <th>Dni</th>
-                                    <th>Wartość</th>
-                                    <th>Przeglądaj</th>
+                                    <th>{{ 'label.id'|trans }}</th>
+                                    <th>{{ 'label.status'|trans }}</th>
+                                    <th>{{ 'label.daus'|trans }}</th>
+                                    <th>{{ 'label.amount_per_day'|trans }}</th>
+                                    <th>{{ 'action.browse'|trans }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -40,8 +40,8 @@
                                         <th>#{{ row.borrowed_id }}</th>
                                         <td>{{ row.status }}</td>
                                         <td>{{ row.days }}</td>
-                                        <td>{{ row.order_price }}</td>
-                                        <td><a href="{{ url('customer_order_view', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">Zobacz</a></td>
+                                        <td>{{ row.order_price }} {{ 'curr'|trans }}</td>
+                                        <td><a href="{{ url('customer_order_view', {'id': row.borrowed_id}) }}" class="btn btn-template-main btn-sm">{{ 'action.view'|trans }}</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

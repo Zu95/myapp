@@ -15,7 +15,11 @@ use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Utils\Categories;
 
-
+/**
+ * Class AdminController.
+ *
+ * @package Controller
+ */
 class AdminController implements ControllerProviderInterface
 {
     /**

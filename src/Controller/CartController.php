@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer controller.
+ * Cart controller.
  *
  * @copyright (c) 2017 Zuzanna Krzysztofik
  */
@@ -15,7 +15,11 @@ use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Utils\Categories;
 
-
+/**
+ * Class CartController.
+ *
+ * @package Controller
+ */
 class CartController implements ControllerProviderInterface
 {
     /**
@@ -47,13 +51,13 @@ class CartController implements ControllerProviderInterface
 
         return $controller;
     }
+
     /**
-     * Index action.
+     * Index action
      * Order form
-     *
-     * @param \Silex\Application $app Silex application
-     *
-     * @return string Response
+     * @param Application $app
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function indexAction(Application $app, Request $request) //funkcja renderuje widok wszystkich zamowień
     {

@@ -22,8 +22,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ProductType extends AbstractType
 {
+
     /**
-     * {@inheritdoc}
+     * Build form
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -152,9 +155,9 @@ class ProductType extends AbstractType
     }
 
 
-
     /**
-     * {@inheritdoc}
+     * Configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -168,11 +171,20 @@ class ProductType extends AbstractType
     }
 
 
+    /**
+     * Get block prefix
+     * @return string
+     */
     public function getBlockPrefix()
     {
         return 'product_type';
     }
 
+    /**
+     * Prepare categories for choices
+     * @param $Categories
+     * @return array
+     */
     protected function prepareCategoriesForChoices($Categories)
     {
         $categories = $Categories->findAllSub();

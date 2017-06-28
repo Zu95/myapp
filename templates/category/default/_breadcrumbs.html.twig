@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="{{ url('homepage') }}">Strona główna</a></li>
+                    <li><a href="{{ url('homepage') }}">{{ 'view.homepage'|trans }}/a></li>
                     {% if (parent_category != null) %}
                     <li><a href="{{ url('category_view', {'id': parent_id}) }}">{{ parent_category }}</a></li>
                     {% endif %}

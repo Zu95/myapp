@@ -20,8 +20,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class EditUserType extends AbstractType
 {
+
     /**
-     * {@inheritdoc}
+     * Build form
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -194,16 +197,20 @@ class EditUserType extends AbstractType
         );
     }
 
+
     /**
-     * {@inheritdoc}
+     * Get block prefix
+     * @return string
      */
     public function getBlockPrefix()
     {
         return 'edit_user_type';
     }
 
+
     /**
-     * {@inheritdoc}
+     * Configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -215,7 +222,9 @@ class EditUserType extends AbstractType
         );
     }
 
+
     /**
+     * Prepare status
      * @return array
      */
     protected function prepareStatus()

@@ -7,12 +7,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Koszyk</h1>
+                        <h1>{{ 'view.cart'|trans }}</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
                             <li><a href="{{ url('homepage') }}">{{ 'homepage'|trans }}</a></li>
-                            <li>Koszyk</li>
+                            <li>{{ 'view.cart'|trans }}</li>
                         </ul>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
         <div class="container">
 
             <div class="box-header">
-                <h3>Zawartość koszyka</h3>
+                <h3>{{ 'view.cart_inside'|trans }}</h3>
             </div>
 
 
@@ -37,10 +37,10 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th colspan="2">Produkt</th>
-                                    <th>Ilość</th>
-                                    <th>Cena</th>
-                                    <th colspan="2">Suma</th>
+                                    <th colspan="2">{{ 'label.name'|trans }}</th>
+                                    <th>{{ 'label.qty'|trans }}</th>
+                                    <th>{{ 'label.price'|trans }}</th>
+                                    <th colspan="2">{{ 'label.sum'|trans }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -65,7 +65,7 @@
 
                                 <tfoot>
                                 <tr>
-                                    <th colspan="4">Kwota za dzień</th>
+                                    <th colspan="4">{{ 'label.amount_per_day'|trans }}</th>
                                     <th colspan="3">{{ sum }} {{ 'curr'|trans }}</th>
                                 </tr>
                                 </tfoot>

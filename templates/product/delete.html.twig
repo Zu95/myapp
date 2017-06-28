@@ -5,12 +5,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1>Usuń produkt</h1>
+                        <h1>{{ product.name }}</h1>
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a href="{{ url('homepage') }}">Panel administracyjny</a></li>
-                            <li>Usuń produkt</li>
+                            <li><a href="{{ url('homepage') }}">{{ 'view.admin'|trans }}</a></li>
+                            <li>{{ 'action.delete_product'|trans }}</li>
                         </ul>
                     </div>
                 </div>
@@ -30,31 +30,17 @@
                     <div class="row" id="productMain">
 
                         {{ form_start(form, { method: 'post', action: url('product_delete', {'id': product.product_id}) }) }}
+
                         <div class="row">
+                            <p class="text-muted">{{ 'text.are_you_sure'|trans }}</p>
                             <div class="col-sm-6 col-md-3">
-                                <div class="form-group">{{  form_row(form.name) }}</div>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <div class="form-group">{{ form_row(form.FK_category_id) }}</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3">
-                                <div class="form-group">{{ form_row(form.price) }}</div>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <div class="form-group">{{ form_row(form.img) }}</div>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <img src="abc" alt="" class="img-responsive">
+                                <div class="form-group">{{ form_widget(form) }}</div>
                             </div>
                         </div>
 
 
                     </div>
-                    <div class="row">
-                        <div class="form-group">{{ form_row(form.description) }}</div>
-                    </div>
+
                     <div class="row">
                         <input type="submit" value="{{ 'Usuń' }}" class="btn btn-danger" />
                     </div>

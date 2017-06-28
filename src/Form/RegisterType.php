@@ -22,7 +22,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class RegisterType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * Build form
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -238,15 +240,17 @@ class RegisterType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
+     * Get block prefix
+     * @param OptionsResolver $resolver
      */
     public function getBlockPrefix()
     {
         return 'register_type';
     }
 
-/**
-     * {@inheritdoc}
+    /**
+     * Configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {

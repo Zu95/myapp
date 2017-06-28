@@ -14,7 +14,11 @@ use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Utils\Categories;
 
-
+/**
+ * Class CustomerController.
+ *
+ * @package Controller
+ */
 class CustomerController implements ControllerProviderInterface
 {
     /**
@@ -30,6 +34,7 @@ class CustomerController implements ControllerProviderInterface
         $controller->get('/', [$this, 'indexAction'])
             ->bind('customer_index');
         $controller->get('/account', [$this, 'userAction'])
+            ->method('GET|POST')
             ->bind('customer_account_index');
         $controller->get('/password', [$this, 'passwordAction'])
             ->method('GET|POST')

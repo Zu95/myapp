@@ -235,13 +235,22 @@ class UserRepository
      */
     public function save($user)
     {
-
             $id = $user['user_id'];
             unset($user['user_id']);
 
-            $user_base = [
-                'FK_role_id' => $user['FK_role_id']
-            ];
+            if(isset($user['FK_role_id'])){
+                $user_base = [
+                    'FK_role_id' => $user['FK_role_id']
+                ];
+            }
+            else {
+                $oldData = $this->findOneById($id);
+                $user_role = $oldData['role_id'];
+                $user_base = [
+                    'FK_role_id' => $user_role
+                ];
+            }
+
 
             $this->db->beginTransaction();
             $this->db->update('users', $user_base, ['user_id' => $id]);

@@ -21,8 +21,11 @@ use Repository\UserRepository;
  */
 class AuthController implements ControllerProviderInterface
 {
+
     /**
-     * {@inheritdoc}
+     * Routing settings
+     * @param Application $app
+     * @return mixed
      */
     public function connect(Application $app)
     {

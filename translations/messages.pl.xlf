@@ -35,6 +35,26 @@
                 <source>text.browse_all</source>
                 <target>Przeglądaj wszystkie kategorie</target>
             </trans-unit>
+            <trans-unit id="text.are_you_sure">
+                <source>text.are_you_sure</source>
+                <target>Czy na pewno chcesz usunąć ten produkt?</target>
+            </trans-unit>
+            <trans-unit id="text.already_customer">
+                <source>text.already_customer</source>
+                <target>Masz już konto?</target>
+            </trans-unit>
+            <trans-unit id="text.new_account">
+                <source>text.new_account</source>
+                <target>Nowe konto</target>
+            </trans-unit>
+            <trans-unit id="text.register_text">
+                <source>text.register_text</source>
+                <target>Nie masz jeszcze u nas konta?</target>
+            </trans-unit>
+            <trans-unit id="text.register_long">
+                <source>text.register_long</source>
+                <target>Zarejestruj się, to potrwa chwilę</target>
+            </trans-unit>
 
             <trans-unit id="view.homepage">
                 <source>view.homepage</source>
@@ -60,6 +80,10 @@
                 <source>view.orders</source>
                 <target>Zamówienia</target>
             </trans-unit>
+            <trans-unit id="view.my_orders">
+                <source>view.my_orders</source>
+                <target>Zamówienia</target>
+            </trans-unit>
             <trans-unit id="view.order">
                 <source>view.order</source>
                 <target>Zamówienie</target>
@@ -75,6 +99,22 @@
             <trans-unit id="view.customers">
                 <source>view.customers</source>
                 <target>Zobacz użytkowników</target>
+            </trans-unit>
+            <trans-unit id="view.cart">
+                <source>view.cart</source>
+                <target>Koszyk</target>
+            </trans-unit>
+            <trans-unit id="view.cart_inside">
+                <source>view.cart_inside</source>
+                <target>Zawartość koszyka</target>
+            </trans-unit>
+            <trans-unit id="view.all_products">
+                <source>view.all_products</source>
+                <target>Wszystkie produkty</target>
+            </trans-unit>
+            <trans-unit id="view.all_categories">
+                <source>view.all_categories</source>
+                <target>Wszystkie kategorie</target>
             </trans-unit>
 
             <trans-unit id="message.record_not_found">
@@ -128,6 +168,22 @@
                 <source>label.role</source>
                 <target>Rola</target>
             </trans-unit>
+            <trans-unit id="label.id">
+                <source>label.id</source>
+                <target>Id</target>
+            </trans-unit>
+            <trans-unit id="label.client">
+                <source>label.client</source>
+                <target>Klient</target>
+            </trans-unit>
+            <trans-unit id="label.amount">
+                <source>label.amount</source>
+                <target>Wartość</target>
+            </trans-unit>
+            <trans-unit id="label.sum">
+                <source>label.sum</source>
+                <target>Suma</target>
+            </trans-unit>
             <trans-unit id="label.days">
                 <source>label.days</source>
                 <target>Ilość dni</target>
@@ -155,6 +211,10 @@
             <trans-unit id="label.price">
                 <source>label.price</source>
                 <target>Cena w PLN</target>
+            </trans-unit>
+            <trans-unit id="label.amount_per_day">
+                <source>label.amount_per_day</source>
+                <target>Cena za dzień</target>
             </trans-unit>
             <trans-unit id="label.order_price">
                 <source>label.order_price</source>
@@ -185,8 +245,8 @@
                 <target>Nazwisko</target>
             </trans-unit>
             <trans-unit id="label.email">
-                <source>label.surname</source>
-                <target>Nazwisko</target>
+                <source>label.email</source>
+                <target>Email</target>
             </trans-unit>
             <trans-unit id="label.telephone">
                 <source>label.telephone</source>
@@ -210,13 +270,34 @@
             </trans-unit>
 
 
+
             <trans-unit id="action.edit">
                 <source>action.edit</source>
                 <target>Edytuj</target>
             </trans-unit>
-            <trans-unit id="action.">
-                <source>action.</source>
+            <trans-unit id="action.back">
+                <source>action.back</source>
+                <target>Wróć</target>
+            </trans-unit>
+            <trans-unit id="action.order">
+                <source>action.order</source>
+                <target>Zamów</target>
+            </trans-unit>
+            <trans-unit id="action.clear_cart">
+                <source>action.clear_cart</source>
+                <target>Wyczyść koszyk</target>
+            </trans-unit>
+            <trans-unit id="action">
+                <source>action</source>
                 <target>Akcja</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="action.delete_product">
+                <source>action.delete_product</source>
+                <target>Usuń produkt</target>
             </trans-unit>
             <trans-unit id="action.change_password">
                 <source>action.change_password</source>
@@ -230,6 +311,10 @@
                 <source>action.login</source>
                 <target>Logowanie</target>
             </trans-unit>
+            <trans-unit id="action.loginx">
+                <source>action.loginx</source>
+                <target>Zaloguj</target>
+            </trans-unit>
             <trans-unit id="action.logout">
                 <source>action.logout</source>
                 <target>Wyloguj się</target>
@@ -241,6 +326,10 @@
             <trans-unit id="action.view">
                 <source>action.view</source>
                 <target>Zobacz</target>
+            </trans-unit>
+            <trans-unit id="action.browse">
+                <source>action.browse</source>
+                <target>Przeglądaj</target>
             </trans-unit>
 
 

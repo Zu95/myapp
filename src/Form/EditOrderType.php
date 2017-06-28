@@ -22,8 +22,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class EditOrderType extends AbstractType
 {
+
     /**
-     * {@inheritdoc}
+     * Build form
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -68,50 +71,12 @@ class EditOrderType extends AbstractType
             ]
         );
 
-/*        $builder->add(
-            'from',
-            DateTimeType::class,
-            [
-                'label' => 'Od ',
-                'required' => true,
-                'widget' => 'single_text',
-
-                'input' => 'datetime',
-                'attr' => array('class' => 'form-control'),
-                'constraints' => [
-                    new Assert\NotBlank(
-                        ['groups' => ['editOrder-default']]
-                    ),
-                ],
-
-            ]
-        );
-        $builder->add(
-            'to',
-            DateTimeType::class,
-            [
-                'label' => 'Do ',
-                'required' => true,
-                'widget' => 'single_text',
-
-                'input' => 'datetime',
-                'attr' => array('class' => 'form-control'),
-                'constraints' => [
-                    new Assert\NotBlank(
-                        ['groups' => ['editOrder-default']]
-                    ),
-                ],
-
-            ]
-        );*/
-
-
     }
 
 
-
     /**
-     * {@inheritdoc}
+     * Configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -125,11 +90,19 @@ class EditOrderType extends AbstractType
     }
 
 
+    /**
+     * Get block prefix
+     * @return string
+     */
     public function getBlockPrefix()
     {
         return 'editOrder_type';
     }
 
+    /**
+     * Prepare status
+     * @return array
+     */
     protected function prepareStatus()
     {
             $choices = [

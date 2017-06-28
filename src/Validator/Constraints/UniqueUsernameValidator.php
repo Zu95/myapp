@@ -14,8 +14,11 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class UniqueUsernameValidator extends ConstraintValidator
 {
+
     /**
-     * {@inheritdoc}
+     * Validate function
+     * @param mixed $value
+     * @param Constraint $constraint
      */
     public function validate($value, Constraint $constraint)
     {

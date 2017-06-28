@@ -19,8 +19,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class OrderType extends AbstractType
 {
+
     /**
-     * {@inheritdoc}
+     * Build form
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -48,9 +51,9 @@ class OrderType extends AbstractType
     }
 
 
-
     /**
-     * {@inheritdoc}
+     * Configure options
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -65,6 +68,7 @@ class OrderType extends AbstractType
 
 
     /**
+     * Get block prefix
      * @return string
      */
     public function getBlockPrefix()

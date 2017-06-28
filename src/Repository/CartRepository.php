@@ -11,7 +11,6 @@ use Silex\Application;
 
 /**
  * Class CartRepository
- *.
  *
  * @package Repository
  */
@@ -34,12 +33,12 @@ class CartRepository
         $this->db = $db;
     }
 
+
     /**
-     * Find data for products in cart
-     *
-     * @param string $id Element id
-     *
-     * @return array|mixed Result
+     * Find data for all products in the cart
+     * @param Application $app
+     * @param $cart
+     * @return array
      */
     public function findAllData(Application $app, $cart)
     {
@@ -64,6 +63,7 @@ class CartRepository
     }
 
     /**
+     * Count sum for products in the cart
      * @param Application $app
      * @param $cart
      * @return int
@@ -84,6 +84,7 @@ class CartRepository
     }
 
     /**
+     * Borrow product
      * @param Application $app
      * @param $borrow_data from BorrowType
      * @param $cart

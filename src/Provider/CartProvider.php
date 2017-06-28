@@ -1,6 +1,6 @@
 <?php
 /**
- * Cart repository.
+ * Cart provider.
  */
 namespace Provider;
 
@@ -33,12 +33,11 @@ class CartProvider
         $this->db = $db;
     }
 
+
     /**
-     * Get array cart from session
-     *
-     * @param string $id Element id
-     *
-     * @return array|mixed Result
+     * Get cart array from session
+     * @param Application $app
+     * @return mixed
      */
     public function findAll(Application $app)
     {
@@ -66,11 +65,10 @@ class CartProvider
 
 
     /**
-     * Remove record from cart.
-     *
-     * @param array $product PRoduct
-     *
-     * @return boolean Result
+     * Remove record from cart
+     * @param Application $app
+     * @param $id
+     * @return mixed
      */
     public function delete(Application $app, $id)
     {

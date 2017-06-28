@@ -11,7 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Repository\CategoryRepository;
 use Utils\Categories;
 
-
+/**
+ * Class CategoryController.
+ *
+ * @package Controller
+ */
 class CategoryController implements ControllerProviderInterface
 {
     /**
@@ -37,14 +41,15 @@ class CategoryController implements ControllerProviderInterface
 
         return $controller;
     }
+
     /**
-     * Index action.
-     *
-     * @param \Silex\Application $app Silex application
-     *
-     * @return string Response
+     * indexAction
+     * View all products
+     * @param Application $app
+     * @param int $page
+     * @return mixed
      */
-    public function indexAction(Application $app, $page = 1) //funkcja renderuje widok wszystkich produktów
+    public function indexAction(Application $app, $page = 1)
     {
         $categoryRepository = new CategoryRepository($app['db']);
         $categories = new Categories($app['db']);
