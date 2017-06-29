@@ -1,0 +1,201 @@
+<?php
+/**
+ * Product type.
+ */
+namespace Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
+/**
+ * Class ProductType.
+ *
+ * @package Form
+ */
+class ProductType extends AbstractType
+{
+
+    /**
+     * Build form
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add(
+            'name',
+            TextType::class,
+            [
+                'label' => 'label.name',
+                'required' => true,
+                'attr' => [
+                    'max_length' => 45,
+                    'class' => 'form-control'
+                ],
+                'constraints' => [
+                    new Assert\NotBlank(
+                        ['groups' => ['product-default']]
+                    ),
+                    new Assert\Length(
+                        [
+                            'groups' => ['product-default'],
+                            'min' => 2,
+                            'max' => 128,
+                        ]
+                    ),
+                ],
+            ]
+        );
+        $builder->add(
+            'description',
+            TextareaType::class,
+            [
+                'label' => 'label.detail',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'style' => 'height: 200px',
+                ],
+                'constraints' => [
+                    new Assert\Length(
+                        [
+                            'groups' => ['product-default'],
+                            'min' => 2,
+                        ]
+                    ),
+                ],
+
+            ]
+        );
+        $builder->add(
+            'price',
+            NumberType::class,
+            [
+                'label' => 'label.price',
+                'required' => true,
+                'attr' => array('class' => 'form-control'),
+                'constraints' => [
+                    new Assert\NotBlank(
+                        ['groups' => ['product-default']]
+                    ),
+                    new Assert\Type(
+                        [
+                            'groups' => ['product-default'],
+                            'type' => "float",
+                        ]
+                    ),
+                ],
+
+            ]
+        );
+        $builder->add(
+            'img',
+            FileType::class,
+            [
+                'label' => 'label.img',
+                'required' => false,
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Image(
+                        [
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                                'image/pjpeg',
+                                'image/jpeg',
+                                'image/pjpeg',
+                            ],
+                        ]
+                    ),
+                ],
+            ]
+        );
+        $builder->add(
+            'qty',
+            NumberType::class,
+            [
+                'label' => 'label.qty',
+                'required' => true,
+                'attr' => array('class' => 'form-control'),
+                'constraints' => [
+                    new Assert\NotBlank(
+                        ['groups' => ['product-default']]
+                    ),
+                ],
+
+            ]
+        );
+        $builder->add(
+            'FK_category_id',
+            ChoiceType::class,
+            [
+                'label' => 'label.category',
+                'required' => true,
+                'attr' => array('class' => 'form-control'),
+                'choices' => $this->prepareCategoriesForChoices($options['category_repository']),
+                'constraints' => [
+                    new Assert\NotBlank(
+                        ['groups' => ['product-default']]
+                    ),
+
+                ],
+            ]
+        );
+
+
+    }
+
+
+    /**
+     * Configure options
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(
+            [
+                'validation_groups' => 'product-default',
+                'category_repository' => null,
+
+            ]
+        );
+    }
+
+
+    /**
+     * Get block prefix
+     * @return string
+     */
+    public function getBlockPrefix()
+    {
+        return 'product_type';
+    }
+
+    /**
+     * Prepare categories for choices
+     * @param $Categories
+     * @return array
+     */
+    protected function prepareCategoriesForChoices($Categories)
+    {
+        $categories = $Categories->findAllSub();
+        $choices = [];
+
+        foreach ($categories as $category) {
+            $choices[$category['category_name']] = $category['category_id'];
+        }
+
+        return $choices;
+    }
+
+
+}

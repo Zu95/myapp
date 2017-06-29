@@ -1,0 +1,101 @@
+<?php
+/**
+ * Gets all category results
+ */
+namespace Utils;
+use Doctrine\DBAL\Connection;
+
+/**
+ * Class Categories
+ *
+ * @package Utils
+ */
+class Categories
+{
+
+    /**
+     * Doctrine DBAL connection.
+     *
+     * @var \Doctrine\DBAL\Connection $db
+     */
+    protected $db;
+    /**
+     * Categories constructor.
+     *
+     * @param \Doctrine\DBAL\Connection $db
+     */
+    public function __construct(Connection $db)
+    {
+        $this->db = $db;
+    }
+    /**
+     * Fetch all categories.
+     *
+     * @return array Result
+     */
+    public function findAll()
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('category_id', 'category_name', 'parent_id')
+            ->from('categories');
+        $result = $queryBuilder->execute()->fetchAll();
+        return !$result ? [] : $result;
+
+    }
+
+    /**
+     * Fetch all subcategories
+     * @return array
+     */
+    public function findAllSub()
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('category_id', 'category_name', 'parent_id')
+            ->from('categories')
+            ->where('category_id > 4');
+        $result = $queryBuilder->execute()->fetchAll();
+        return !$result ? [] : $result;
+
+    }
+    /**
+     * Find all subcategories by parent_id
+     *
+     * @param string $id Element id
+     *
+     * @return array|mixed Result
+     */
+    public function findAllByParent($id)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('c.category_id', 'c.category_name', 'c.parent_id', 'pname.category_name AS parent_name')
+            ->from('categories', 'c')
+            ->innerJoin('c', 'categories', 'pname', 'c.parent_id = pname.category_id')
+            ->where('c.parent_id = :id')
+            ->setParameter(':id', $id);
+        $result = $queryBuilder->execute()->fetchAll();
+        return !$result ? [] : $result;
+
+    }
+
+    /**
+     * Find category data by product id
+     * @param $id
+     * @return array|mixed
+     */
+    public function findOneByProduct($id)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder->select('c.category_name', 'c.parent_id', 'pname.category_name AS parent_name')
+            ->from('categories', 'c')
+            ->innerJoin('c', 'categories', 'pname', 'c.parent_id = pname.category_id')
+            ->innerJoin('c', 'products', 'p', 'c.category_id = p.FK_category_id')
+            ->where('p.product_id = :id')
+            ->setParameter(':id', $id);
+        $result = $queryBuilder->execute()->fetch();
+        return !$result ? [] : $result;
+
+    }
+
+
+
+}

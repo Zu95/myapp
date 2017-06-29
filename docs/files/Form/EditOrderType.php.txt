@@ -1,0 +1,120 @@
+<?php
+/**
+ * EditOrder type.
+ */
+namespace Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
+/**
+ * Class EditOrderType.
+ *
+ * @package Form
+ */
+class EditOrderType extends AbstractType
+{
+
+    /**
+     * Build form
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+
+        $builder->add(
+            'order_price',
+            NumberType::class,
+            [
+                'label' => 'label.order_price',
+                'required' => true,
+                'attr' => array('class' => 'form-control'),
+                'constraints' => [
+                    new Assert\NotBlank(
+                        ['groups' => ['editOrder-default']]
+                    ),
+                    new Assert\Type(
+                        [
+                            'groups' => ['editOrder-default'],
+                            'type' => "float",
+                        ]
+                    ),
+                ],
+
+            ]
+        );
+
+
+        $builder->add(
+            'status',
+            ChoiceType::class,
+            [
+                'label' => 'label.status',
+                'required' => true,
+                'attr' => array('class' => 'form-control'),
+                'choices' => $this->prepareStatus(),
+                'constraints' => [
+                    new Assert\NotBlank(
+                        ['groups' => ['editOrder-default']]
+                    ),
+
+                ],
+            ]
+        );
+
+    }
+
+
+    /**
+     * Configure options
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(
+            [
+                'validation_groups' => 'editOrder-default',
+                'order_repository' => null,
+
+            ]
+        );
+    }
+
+
+    /**
+     * Get block prefix
+     * @return string
+     */
+    public function getBlockPrefix()
+    {
+        return 'editOrder_type';
+    }
+
+    /**
+     * Prepare status
+     * @return array
+     */
+    protected function prepareStatus()
+    {
+            $choices = [
+            'Zamówione' => 1,
+            'Do odebrania' => 2,
+            'Wypożyczone' => 3,
+            'Zwrócone' => 4,
+            'Anulowane' => 5,
+        ];
+
+        return $choices;
+    }
+
+
+}
