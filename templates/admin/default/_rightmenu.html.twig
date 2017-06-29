@@ -1,0 +1,36 @@
+<div class="col-md-3">
+    <!-- *** CUSTOMER MENU ***
+_________________________________________________________ -->
+    <div class="panel panel-default sidebar-menu">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ 'view.admin'|trans }}</h3>
+        </div>
+
+        <div class="panel-body">
+
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="{{ url('admin_order_index') }}"><i class="fa fa-list"></i> {{ 'view.orders'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ url('admin_user_index') }}"><i class="fa fa-user"></i> {{ 'view.users'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ url('category_index') }}"><i class="fa fa-database" aria-hidden="true"></i> {{ 'view.products'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ url('auth_logout') }}"><i class="fa fa-sign-out"></i> {{ 'action.logout'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- /.col-md-3 -->
+
+    <!-- *** CUSTOMER MENU END *** -->
+</div>
+
+<!-- *** RIGHT COLUMN END *** -->
+
+</div>
